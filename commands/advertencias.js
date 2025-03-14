@@ -10,7 +10,7 @@ import { hasModeratorRole } from "../utils/hasPermissions.js";
 
 export default {
   data: new SlashCommandBuilder()
-    .setName("advertencias")
+    .setName("adv")
     .setDescription("Sistema de gestión de advertencias para usuarios")
     .addSubcommand((subcommand) =>
       subcommand

@@ -19,6 +19,32 @@
       "reasons": [],
       "banned": false,
       "banCount": 1
+    },
+    {
+      "name": "campi",
+      "warnings": 1,
+      "reasons": [
+        {
+          "date": "2025-03-14T16:59:39.614Z",
+          "reason": "abandonarnos",
+          "issuedBy": "uruwuay"
+        }
+      ],
+      "banned": false,
+      "banCount": 0
+    },
+    {
+      "name": "Crespo",
+      "warnings": 1,
+      "reasons": [
+        {
+          "date": "2025-03-14T17:00:04.388Z",
+          "reason": "no hacerle caso as hiryu",
+          "issuedBy": "romp4ge"
+        }
+      ],
+      "banned": false,
+      "banCount": 0
     }
   ]
 }

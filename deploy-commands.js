@@ -29,7 +29,6 @@ for (const file of commandFiles) {
   }
 }
 
-console.log(process.env.DISCORD_TOKEN);
 // Initialize Discord client to fetch guilds
 const client = new Client({
   intents: [GatewayIntentBits.Guilds],
@@ -51,11 +50,7 @@ client.once("ready", async () => {
       console.log(`Deploying commands to guild: ${guild.name} (${guild.id})`);
 
       await rest.put(
-        Routes.applicationGuildCommands(
-          config.clientId,
-          guild.id,
-          config.token
-        ),
+        Routes.applicationGuildCommands(config.clientId, guild.id),
         { body: commands }
       );
 
