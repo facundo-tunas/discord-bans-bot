@@ -1,46 +1,645 @@
 {
   "users": [
     {
-      "name": "Test",
+      "name": "mitomano",
       "warnings": 1,
       "reasons": [
         {
-          "date": "2025-03-14T03:11:24.373Z",
-          "reason": "testeo",
-          "issuedBy": "uruwuay"
+          "date": "2025-03-14T20:28:29.970Z",
+          "reason": "default reason",
+          "issuedBy": "system"
         }
       ],
       "banned": false,
       "banCount": 0
     },
     {
-      "name": "Portillo",
+      "name": "saxx_",
+      "warnings": 1,
+      "reasons": [
+        {
+          "date": "2025-03-14T20:28:29.970Z",
+          "reason": "default reason",
+          "issuedBy": "system"
+        }
+      ],
+      "banned": false,
+      "banCount": 0
+    },
+    {
+      "name": "yesan",
+      "warnings": 3,
+      "reasons": [
+        {
+          "date": "2025-03-14T20:28:29.970Z",
+          "reason": "default reason",
+          "issuedBy": "system"
+        }
+      ],
+      "banned": false,
+      "banCount": 0
+    },
+    {
+      "name": "xb.",
+      "warnings": 1,
+      "reasons": [
+        {
+          "date": "2025-03-14T20:28:29.970Z",
+          "reason": "default reason",
+          "issuedBy": "system"
+        }
+      ],
+      "banned": false,
+      "banCount": 0
+    },
+    {
+      "name": "moska",
+      "warnings": 1,
+      "reasons": [
+        {
+          "date": "2025-03-14T20:28:29.970Z",
+          "reason": "default reason",
+          "issuedBy": "system"
+        }
+      ],
+      "banned": false,
+      "banCount": 0
+    },
+    {
+      "name": "7adon Sancho",
+      "warnings": 1,
+      "reasons": [
+        {
+          "date": "2025-03-14T20:28:29.970Z",
+          "reason": "default reason",
+          "issuedBy": "system"
+        }
+      ],
+      "banned": false,
+      "banCount": 0
+    },
+    {
+      "name": "rober.iacc",
+      "warnings": 1,
+      "reasons": [
+        {
+          "date": "2025-03-14T20:28:29.970Z",
+          "reason": "default reason",
+          "issuedBy": "system"
+        }
+      ],
+      "banned": false,
+      "banCount": 0
+    },
+    {
+      "name": "Nagisa",
+      "warnings": 1,
+      "reasons": [
+        {
+          "date": "2025-03-14T20:28:29.970Z",
+          "reason": "default reason",
+          "issuedBy": "system"
+        }
+      ],
+      "banned": false,
+      "banCount": 0
+    },
+    {
+      "name": "un rustico mas",
+      "warnings": 1,
+      "reasons": [
+        {
+          "date": "2025-03-14T20:28:29.970Z",
+          "reason": "default reason",
+          "issuedBy": "system"
+        }
+      ],
+      "banned": false,
+      "banCount": 0
+    },
+    {
+      "name": "Shiryu",
+      "warnings": 2,
+      "reasons": [
+        {
+          "date": "2025-03-14T20:28:29.970Z",
+          "reason": "default reason",
+          "issuedBy": "system"
+        }
+      ],
+      "banned": false,
+      "banCount": 0
+    },
+    {
+      "name": "Canø",
+      "warnings": 4,
+      "reasons": [
+        {
+          "date": "2025-03-14T20:28:29.970Z",
+          "reason": "default reason",
+          "issuedBy": "system"
+        }
+      ],
+      "banned": false,
+      "banCount": 0
+    },
+    {
+      "name": "Pajaro",
+      "warnings": 1,
+      "reasons": [
+        {
+          "date": "2025-03-14T20:28:29.970Z",
+          "reason": "default reason",
+          "issuedBy": "system"
+        }
+      ],
+      "banned": false,
+      "banCount": 0
+    },
+    {
+      "name": "pasø",
+      "warnings": 1,
+      "reasons": [
+        {
+          "date": "2025-03-14T20:28:29.970Z",
+          "reason": "default reason",
+          "issuedBy": "system"
+        }
+      ],
+      "banned": false,
+      "banCount": 0
+    },
+    {
+      "name": "Marley durazno",
+      "warnings": 2,
+      "reasons": [
+        {
+          "date": "2025-03-14T20:28:29.970Z",
+          "reason": "default reason",
+          "issuedBy": "system"
+        }
+      ],
+      "banned": false,
+      "banCount": 0
+    },
+    {
+      "name": "prepucio",
+      "warnings": 1,
+      "reasons": [
+        {
+          "date": "2025-03-14T20:28:29.970Z",
+          "reason": "default reason",
+          "issuedBy": "system"
+        }
+      ],
+      "banned": false,
+      "banCount": 0
+    },
+    {
+      "name": "DonD",
+      "warnings": 3,
+      "reasons": [
+        {
+          "date": "2025-03-14T20:28:29.970Z",
+          "reason": "default reason",
+          "issuedBy": "system"
+        }
+      ],
+      "banned": false,
+      "banCount": 0
+    },
+    {
+      "name": "Sery",
+      "warnings": 2,
+      "reasons": [
+        {
+          "date": "2025-03-14T20:28:29.970Z",
+          "reason": "default reason",
+          "issuedBy": "system"
+        }
+      ],
+      "banned": false,
+      "banCount": 0
+    },
+    {
+      "name": "ᴇʟ ♣️ᴄᴏᴍᴏᴅɪɴ♣️ 🎰 ᴠ2",
+      "warnings": 1,
+      "reasons": [
+        {
+          "date": "2025-03-14T20:28:29.970Z",
+          "reason": "default reason",
+          "issuedBy": "system"
+        }
+      ],
+      "banned": false,
+      "banCount": 0
+    },
+    {
+      "name": "Kosovo",
+      "warnings": 1,
+      "reasons": [
+        {
+          "date": "2025-03-14T20:28:29.970Z",
+          "reason": "default reason",
+          "issuedBy": "system"
+        }
+      ],
+      "banned": false,
+      "banCount": 0
+    },
+    {
+      "name": "Pandadinha",
+      "warnings": 1,
+      "reasons": [
+        {
+          "date": "2025-03-14T20:28:29.970Z",
+          "reason": "default reason",
+          "issuedBy": "system"
+        }
+      ],
+      "banned": false,
+      "banCount": 0
+    },
+    {
+      "name": "Shavio",
+      "warnings": 1,
+      "reasons": [
+        {
+          "date": "2025-03-14T20:28:29.970Z",
+          "reason": "default reason",
+          "issuedBy": "system"
+        }
+      ],
+      "banned": false,
+      "banCount": 0
+    },
+    {
+      "name": "Rain",
+      "warnings": 1,
+      "reasons": [
+        {
+          "date": "2025-03-14T20:28:29.970Z",
+          "reason": "default reason",
+          "issuedBy": "system"
+        }
+      ],
+      "banned": false,
+      "banCount": 0
+    },
+    {
+      "name": "BL",
+      "warnings": 1,
+      "reasons": [
+        {
+          "date": "2025-03-14T20:28:29.970Z",
+          "reason": "default reason",
+          "issuedBy": "system"
+        }
+      ],
+      "banned": false,
+      "banCount": 0
+    },
+    {
+      "name": "Milica erome",
+      "warnings": 1,
+      "reasons": [
+        {
+          "date": "2025-03-14T20:28:29.970Z",
+          "reason": "default reason",
+          "issuedBy": "system"
+        }
+      ],
+      "banned": false,
+      "banCount": 0
+    },
+    {
+      "name": "Newcastle",
+      "warnings": 1,
+      "reasons": [
+        {
+          "date": "2025-03-14T20:28:29.970Z",
+          "reason": "default reason",
+          "issuedBy": "system"
+        }
+      ],
+      "banned": false,
+      "banCount": 0
+    },
+    {
+      "name": "Dybagol",
+      "warnings": 1,
+      "reasons": [
+        {
+          "date": "2025-03-14T20:28:29.970Z",
+          "reason": "default reason",
+          "issuedBy": "system"
+        }
+      ],
+      "banned": false,
+      "banCount": 0
+    },
+    {
+      "name": "Raid",
+      "warnings": 1,
+      "reasons": [
+        {
+          "date": "2025-03-14T20:28:29.970Z",
+          "reason": "default reason",
+          "issuedBy": "system"
+        }
+      ],
+      "banned": false,
+      "banCount": 0
+    },
+    {
+      "name": "c.portillo",
+      "warnings": 1,
+      "reasons": [
+        {
+          "date": "2025-03-14T20:28:29.970Z",
+          "reason": "default reason",
+          "issuedBy": "system"
+        }
+      ],
+      "banned": false,
+      "banCount": 0
+    },
+    {
+      "name": "Ximbastian Vettel",
+      "warnings": 1,
+      "reasons": [
+        {
+          "date": "2025-03-14T20:28:29.970Z",
+          "reason": "default reason",
+          "issuedBy": "system"
+        }
+      ],
+      "banned": false,
+      "banCount": 0
+    },
+    {
+      "name": "IbaiLlanos (gordofobico)",
+      "warnings": 2,
+      "reasons": [
+        {
+          "date": "2025-03-14T20:28:29.970Z",
+          "reason": "default reason",
+          "issuedBy": "system"
+        }
+      ],
+      "banned": false,
+      "banCount": 0
+    },
+    {
+      "name": "Russia // Khan J",
+      "warnings": 1,
+      "reasons": [
+        {
+          "date": "2025-03-14T20:28:29.970Z",
+          "reason": "default reason",
+          "issuedBy": "system"
+        }
+      ],
+      "banned": false,
+      "banCount": 0
+    },
+    {
+      "name": "El mil chancletas",
+      "warnings": 1,
+      "reasons": [
+        {
+          "date": "2025-03-14T20:28:29.970Z",
+          "reason": "default reason",
+          "issuedBy": "system"
+        }
+      ],
+      "banned": false,
+      "banCount": 0
+    },
+    {
+      "name": "Boregard",
+      "warnings": 1,
+      "reasons": [
+        {
+          "date": "2025-03-14T20:28:29.970Z",
+          "reason": "default reason",
+          "issuedBy": "system"
+        }
+      ],
+      "banned": false,
+      "banCount": 0
+    },
+    {
+      "name": "Bomba de cal",
+      "warnings": 1,
+      "reasons": [
+        {
+          "date": "2025-03-14T20:28:29.970Z",
+          "reason": "default reason",
+          "issuedBy": "system"
+        }
+      ],
+      "banned": false,
+      "banCount": 0
+    },
+    {
+      "name": "keso",
+      "warnings": 1,
+      "reasons": [
+        {
+          "date": "2025-03-14T20:28:29.970Z",
+          "reason": "default reason",
+          "issuedBy": "system"
+        }
+      ],
+      "banned": false,
+      "banCount": 0
+    },
+    {
+      "name": "vendo naranja",
+      "warnings": 1,
+      "reasons": [
+        {
+          "date": "2025-03-14T20:28:29.970Z",
+          "reason": "default reason",
+          "issuedBy": "system"
+        }
+      ],
+      "banned": false,
+      "banCount": 0
+    },
+    {
+      "name": "Techxin",
+      "warnings": 1,
+      "reasons": [
+        {
+          "date": "2025-03-14T20:28:29.970Z",
+          "reason": "default reason",
+          "issuedBy": "system"
+        }
+      ],
+      "banned": false,
+      "banCount": 0
+    },
+    {
+      "name": "phil suter",
+      "warnings": 2,
+      "reasons": [
+        {
+          "date": "2025-03-14T20:28:29.970Z",
+          "reason": "default reason",
+          "issuedBy": "system"
+        }
+      ],
+      "banned": false,
+      "banCount": 0
+    },
+    {
+      "name": "Suelojo",
+      "warnings": 1,
+      "reasons": [
+        {
+          "date": "2025-03-14T20:28:29.970Z",
+          "reason": "default reason",
+          "issuedBy": "system"
+        }
+      ],
+      "banned": false,
+      "banCount": 0
+    },
+    {
+      "name": "Matias Rossi",
+      "warnings": 1,
+      "reasons": [
+        {
+          "date": "2025-03-14T20:28:29.970Z",
+          "reason": "default reason",
+          "issuedBy": "system"
+        }
+      ],
+      "banned": false,
+      "banCount": 0
+    },
+    {
+      "name": "SOY HINCHA DE ALVARADOS",
+      "warnings": 1,
+      "reasons": [
+        {
+          "date": "2025-03-14T20:28:29.970Z",
+          "reason": "default reason",
+          "issuedBy": "system"
+        }
+      ],
+      "banned": false,
+      "banCount": 0
+    },
+    {
+      "name": "L'leul",
+      "warnings": 1,
+      "reasons": [
+        {
+          "date": "2025-03-14T20:28:29.970Z",
+          "reason": "default reason",
+          "issuedBy": "system"
+        }
+      ],
+      "banned": false,
+      "banCount": 0
+    },
+    {
+      "name": "grimmjow",
+      "warnings": 1,
+      "reasons": [
+        {
+          "date": "2025-03-14T20:28:29.970Z",
+          "reason": "default reason",
+          "issuedBy": "system"
+        }
+      ],
+      "banned": false,
+      "banCount": 0
+    },
+    {
+      "name": "joninho",
+      "warnings": 1,
+      "reasons": [
+        {
+          "date": "2025-03-14T20:28:29.970Z",
+          "reason": "default reason",
+          "issuedBy": "system"
+        }
+      ],
+      "banned": false,
+      "banCount": 0
+    },
+    {
+      "name": "Caniica",
+      "warnings": 2,
+      "reasons": [
+        {
+          "date": "2025-03-14T20:28:29.970Z",
+          "reason": "default reason",
+          "issuedBy": "system"
+        }
+      ],
+      "banned": false,
+      "banCount": 0
+    },
+    {
+      "name": "Barco Basurero",
+      "warnings": 1,
+      "reasons": [
+        {
+          "date": "2025-03-14T20:28:29.970Z",
+          "reason": "default reason",
+          "issuedBy": "system"
+        }
+      ],
+      "banned": false,
+      "banCount": 0
+    },
+    {
+      "name": "TESTEOOO",
       "warnings": 0,
       "reasons": [],
       "banned": false,
-      "banCount": 1
+      "banCount": 0
     },
     {
-      "name": "campi",
+      "name": "rodri down de meirda",
+      "warnings": 0,
+      "reasons": [],
+      "banned": false,
+      "banCount": 0
+    },
+    {
+      "name": "Los Piojos",
       "warnings": 1,
       "reasons": [
         {
-          "date": "2025-03-14T16:59:39.614Z",
-          "reason": "abandonarnos",
-          "issuedBy": "uruwuay"
+          "date": "2025-03-14T22:27:10.000Z",
+          "reason": "xenofobia",
+          "issuedBy": "crespo8_"
         }
       ],
       "banned": false,
       "banCount": 0
     },
     {
-      "name": "Crespo",
+      "name": "𝗡𝗮𝘃𝗮",
+      "warnings": 0,
+      "reasons": [],
+      "banned": false,
+      "banCount": 0
+    },
+    {
+      "name": "nava",
       "warnings": 1,
       "reasons": [
         {
-          "date": "2025-03-14T17:00:04.388Z",
-          "reason": "no hacerle caso as hiryu",
-          "issuedBy": "romp4ge"
+          "date": "2025-03-14T22:26:57.928Z",
+          "reason": "xenofobia",
+          "issuedBy": "crespo8_"
         }
       ],
       "banned": false,

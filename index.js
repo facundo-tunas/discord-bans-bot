@@ -41,6 +41,7 @@ const eventFiles = fs
   .readdirSync(eventsPath)
   .filter((file) => file.endsWith(".js"));
 
+console.log(eventFiles);
 for (const file of eventFiles) {
   const filePath = `./events/${file}`;
   const event = await import(filePath);

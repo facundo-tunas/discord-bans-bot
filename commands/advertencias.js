@@ -1,12 +1,18 @@
 import { SlashCommandBuilder, EmbedBuilder } from "discord.js";
 import {
   findUser,
-  getAllUsers,
   addWarning,
   removeWarning,
   clearWarnings,
+  getAllUsers,
 } from "../utils/dataHandler.js";
+
 import { hasModeratorRole } from "../utils/hasPermissions.js";
+import {
+  handleListar,
+  handleResetearLista,
+  updatePersistentList,
+} from "../scripts/listar.js";
 
 export default {
   data: new SlashCommandBuilder()
@@ -21,6 +27,7 @@ export default {
             .setName("nombre")
             .setDescription("El nombre del usuario a revisar")
             .setRequired(true)
+            .setAutocomplete(true)
         )
     )
     .addSubcommand((subcommand) =>
@@ -32,6 +39,7 @@ export default {
             .setName("nombre")
             .setDescription("El nombre del usuario a advertir")
             .setRequired(true)
+            .setAutocomplete(true)
         )
         .addStringOption((option) =>
           option
@@ -49,6 +57,7 @@ export default {
             .setName("nombre")
             .setDescription("El nombre del usuario")
             .setRequired(true)
+            .setAutocomplete(true)
         )
     )
     .addSubcommand((subcommand) =>
@@ -60,12 +69,32 @@ export default {
             .setName("nombre")
             .setDescription("El nombre del usuario")
             .setRequired(true)
+            .setAutocomplete(true)
         )
     )
     .addSubcommand((subcommand) =>
       subcommand
         .setName("listar")
         .setDescription("Listar todos los usuarios con advertencias")
+        .addBooleanOption((option) =>
+          option
+            .setName("persistente")
+            .setDescription(
+              "Crear una lista persistente que se actualiza automáticamente"
+            )
+            .setRequired(false)
+        )
+        .addIntegerOption((option) =>
+          option
+            .setName("pagina")
+            .setDescription("Número de página a mostrar")
+            .setRequired(false)
+        )
+    )
+    .addSubcommand((subcommand) =>
+      subcommand
+        .setName("resetear_lista")
+        .setDescription("Eliminar la lista persistente actual")
     ),
 
   async execute(interaction) {
@@ -82,6 +111,8 @@ export default {
         return handleLimpiar(interaction);
       case "listar":
         return handleListar(interaction);
+      case "resetear_lista":
+        return handleResetearLista(interaction);
       default:
         return interaction.reply({
           embeds: [
@@ -131,7 +162,7 @@ async function handleRevisar(interaction) {
 
   if (user.reasons.length > 0) {
     embed.addFields(
-      user.reasons.map((warn, index) => {
+      user.reasons.slice(0, 25).map((warn, index) => {
         const date = new Date(warn.date).toLocaleDateString();
         return {
           name: `Advertencia #${index + 1} (${date})`,
@@ -141,9 +172,16 @@ async function handleRevisar(interaction) {
     );
   }
 
+  if (user.reasons.length > 25) {
+    embed.addFields({
+      name: "Nota",
+      value: `Mostrando 25/${user.reasons.length} advertencias debido a limitaciones de Discord.`,
+    });
+  }
+
   return interaction.reply({
     embeds: [embed],
-    ephemeral: false,
+    ephemeral: true,
   });
 }
 
@@ -162,9 +200,11 @@ async function handleAgregar(interaction) {
 
   const nombre = interaction.options.getString("nombre");
   const razon = interaction.options.getString("razon");
+  const truncatedReason =
+    razon.length > 900 ? razon.substring(0, 897) + "..." : razon;
   const issuedBy = interaction.user.username;
 
-  const user = addWarning(nombre, razon, issuedBy);
+  const user = addWarning(nombre, truncatedReason, issuedBy);
 
   const banState = user.banned
     ? `Este usuario está baneado | Bans totales: ${user.banCount}`
@@ -175,11 +215,13 @@ async function handleAgregar(interaction) {
   const embed = new EmbedBuilder()
     .setTitle(`Advertencia para ${nombre}`)
     .setColor(user.banned ? 0xff0000 : 0x0099ff)
-    .setDescription(`**Razón:** ${razon}`)
+    .setDescription(`**Razón:** ${truncatedReason}`)
     .setFooter({ text: `${banState}\nAdvertencia emitida por: ${issuedBy}` })
     .setTimestamp();
 
-  return interaction.reply({ embeds: [embed] });
+  await interaction.reply({ embeds: [embed] });
+
+  await updatePersistentList(interaction.client);
 }
 
 async function handleQuitar(interaction) {
@@ -236,7 +278,9 @@ async function handleQuitar(interaction) {
     )
     .setTimestamp();
 
-  return interaction.reply({ embeds: [embed] });
+  await interaction.reply({ embeds: [embed] });
+
+  await updatePersistentList(interaction.client);
 }
 
 async function handleLimpiar(interaction) {
@@ -282,58 +326,7 @@ async function handleLimpiar(interaction) {
     )
     .setTimestamp();
 
-  return interaction.reply({ embeds: [embed] });
-}
+  await interaction.reply({ embeds: [embed] });
 
-async function handleListar(interaction) {
-  const users = getAllUsers();
-
-  if (users.length === 0) {
-    return interaction.reply({
-      embeds: [
-        new EmbedBuilder()
-          .setTitle("Sin advertencias")
-          .setDescription("No hay usuarios con advertencias.")
-          .setColor("Green"),
-      ],
-      ephemeral: true,
-    });
-  }
-
-  const embed = new EmbedBuilder()
-    .setTitle("Usuarios con Advertencias")
-    .setColor("Red")
-    .setTimestamp();
-
-  const sortedUsers = [...users].sort((a, b) => b.warnings - a.warnings);
-
-  const bannedUsers = sortedUsers.filter((user) => user.banned);
-  const warnedUsers = sortedUsers.filter(
-    (user) => !user.banned && user.warnings > 0
-  );
-
-  if (bannedUsers.length > 0) {
-    embed.addFields({
-      name: "🚨 Usuarios Baneados",
-      value:
-        bannedUsers
-          .map((user) => `**${user.name}** - ${user.warnings} advertencias`)
-          .join("\n") || "Ninguno",
-    });
-  }
-
-  if (warnedUsers.length > 0) {
-    embed.addFields({
-      name: "⚠️ Usuarios Advertidos",
-      value:
-        warnedUsers
-          .map((user) => `**${user.name}** - ${user.warnings}/5 advertencias`)
-          .join("\n") || "Ninguno",
-    });
-  }
-
-  return interaction.reply({
-    embeds: [embed],
-    ephemeral: false,
-  });
+  await updatePersistentList(interaction.client);
 }
