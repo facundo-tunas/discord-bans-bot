@@ -1,3 +1,24 @@
 {
-  "users": []
+  "users": [
+    {
+      "name": "Test",
+      "warnings": 1,
+      "reasons": [
+        {
+          "date": "2025-03-14T03:11:24.373Z",
+          "reason": "testeo",
+          "issuedBy": "uruwuay"
+        }
+      ],
+      "banned": false,
+      "banCount": 0
+    },
+    {
+      "name": "Portillo",
+      "warnings": 0,
+      "reasons": [],
+      "banned": false,
+      "banCount": 1
+    }
+  ]
 }

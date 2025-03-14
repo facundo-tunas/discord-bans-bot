@@ -84,7 +84,12 @@ export default {
         return handleListar(interaction);
       default:
         return interaction.reply({
-          content: "Subcomando desconocido.",
+          embeds: [
+            new EmbedBuilder()
+              .setTitle("Error")
+              .setDescription("Subcomando desconocido.")
+              .setColor(0xff0000),
+          ],
           ephemeral: true,
         });
     }
@@ -97,7 +102,14 @@ async function handleRevisar(interaction) {
 
   if (!user) {
     return interaction.reply({
-      content: `No se encontraron advertencias para el usuario: ${nombre}`,
+      embeds: [
+        new EmbedBuilder()
+          .setTitle("Advertencias no encontradas")
+          .setDescription(
+            `No se encontraron advertencias para el usuario: ${nombre}`
+          )
+          .setColor(0xff0000),
+      ],
       ephemeral: true,
     });
   }
@@ -108,7 +120,7 @@ async function handleRevisar(interaction) {
     .setDescription(`Advertencias totales: ${user.warnings}/5`)
     .setFooter({
       text: user.banned
-        ? `⚠️ ESTE USUARIO ESTÁ BANEADO ⚠️ | Bans totales: ${user.banCount}`
+        ? `Este usuario está baneado | Bans totales: ${user.banCount}`
         : `${
             5 - user.warnings
           } advertencias restantes para el ban | Bans totales: ${
@@ -138,7 +150,12 @@ async function handleRevisar(interaction) {
 async function handleAgregar(interaction) {
   if (!hasModeratorRole(interaction.member)) {
     return interaction.reply({
-      content: "No tienes permiso para usar este comando.",
+      embeds: [
+        new EmbedBuilder()
+          .setTitle("Permiso denegado")
+          .setDescription("No tienes permiso para usar este comando.")
+          .setColor(0xff0000),
+      ],
       ephemeral: true,
     });
   }
@@ -149,27 +166,31 @@ async function handleAgregar(interaction) {
 
   const user = addWarning(nombre, razon, issuedBy);
 
+  const banState = user.banned
+    ? `Este usuario está baneado | Bans totales: ${user.banCount}`
+    : `${
+        5 - user.warnings
+      } advertencias restantes para el ban | Bans totales: ${user.banCount}`;
+
   const embed = new EmbedBuilder()
-    .setTitle(`️ ${nombre} ha recibido una advertencia por: ${razon}`)
-    .setColor(user.banned ? "Red" : "Blue")
-    .setFooter({ text: `Por ${issuedBy}` })
+    .setTitle(`Advertencia para ${nombre}`)
+    .setColor(user.banned ? 0xff0000 : 0x0099ff)
+    .setDescription(`**Razón:** ${razon}`)
+    .setFooter({ text: `${banState}\nAdvertencia emitida por: ${issuedBy}` })
     .setTimestamp();
 
-  embed.setDescription(
-    user.banned
-      ? `⚠️ ESTE USUARIO ESTÁ BANEADO ⚠️ | Bans totales: ${user.banCount}`
-      : `${
-          5 - user.warnings
-        } advertencias restantes para el ban | Bans totales: ${user.banCount}`
-  );
-
-  return interaction.reply({ embeds: [embed] }); // Fixed
+  return interaction.reply({ embeds: [embed] });
 }
 
 async function handleQuitar(interaction) {
   if (!hasModeratorRole(interaction.member)) {
     return interaction.reply({
-      content: "No tienes permiso para usar este comando.",
+      embeds: [
+        new EmbedBuilder()
+          .setTitle("Permiso denegado")
+          .setDescription("No tienes permiso para usar este comando.")
+          .setColor(0xff0000),
+      ],
       ephemeral: true,
     });
   }
@@ -179,37 +200,54 @@ async function handleQuitar(interaction) {
   const existingUser = findUser(nombre);
   if (!existingUser) {
     return interaction.reply({
-      content: `No se encontraron advertencias para el usuario: ${nombre}`,
+      embeds: [
+        new EmbedBuilder()
+          .setTitle("Usuario no encontrado")
+          .setDescription(
+            `No se encontraron advertencias para el usuario: ${nombre}`
+          )
+          .setColor(0xff0000),
+      ],
       ephemeral: true,
     });
   }
 
   if (existingUser.warnings === 0) {
     return interaction.reply({
-      content: `${nombre} no tiene advertencias para eliminar.`,
+      embeds: [
+        new EmbedBuilder()
+          .setTitle("Sin advertencias")
+          .setDescription(`${nombre} no tiene advertencias para eliminar.`)
+          .setColor(0xffa500),
+      ],
       ephemeral: true,
     });
   }
 
   const user = removeWarning(nombre);
 
-  if (existingUser.banned && !user.banned) {
-    return interaction.reply({
-      content: `✅ Se eliminó una advertencia de ${nombre}.\nAdvertencias actuales: ${user.warnings}/5\n**El usuario ya no está baneado**`,
-      ephemeral: false,
-    });
-  } else {
-    return interaction.reply({
-      content: `✅ Se eliminó una advertencia de ${nombre}.\nAdvertencias actuales: ${user.warnings}/5`,
-      ephemeral: false,
-    });
-  }
+  const embed = new EmbedBuilder()
+    .setTitle(`Advertencia eliminada de ${nombre}`)
+    .setColor(0x00ff00)
+    .setDescription(
+      existingUser.banned && !user.banned
+        ? `Advertencias actuales: ${user.warnings}/5\n**El usuario ya no está baneado**`
+        : `Advertencias actuales: ${user.warnings}/5`
+    )
+    .setTimestamp();
+
+  return interaction.reply({ embeds: [embed] });
 }
 
 async function handleLimpiar(interaction) {
   if (!hasModeratorRole(interaction.member)) {
     return interaction.reply({
-      content: "No tienes permiso para usar este comando.",
+      embeds: [
+        new EmbedBuilder()
+          .setTitle("Permiso denegado")
+          .setDescription("No tienes permiso para usar este comando.")
+          .setColor(0xff0000),
+      ],
       ephemeral: true,
     });
   }
@@ -219,7 +257,14 @@ async function handleLimpiar(interaction) {
   const existingUser = findUser(nombre);
   if (!existingUser) {
     return interaction.reply({
-      content: `No se encontraron advertencias para el usuario: ${nombre}`,
+      embeds: [
+        new EmbedBuilder()
+          .setTitle("Usuario no encontrado")
+          .setDescription(
+            `No se encontraron advertencias para el usuario: ${nombre}`
+          )
+          .setColor(0xff0000),
+      ],
       ephemeral: true,
     });
   }
@@ -227,17 +272,17 @@ async function handleLimpiar(interaction) {
   const wasBanned = existingUser.banned;
   const user = clearWarnings(nombre);
 
-  if (wasBanned) {
-    return interaction.reply({
-      content: `✅ Se eliminaron todas las advertencias para ${nombre}.\n**El usuario ya no está baneado**`,
-      ephemeral: false,
-    });
-  } else {
-    return interaction.reply({
-      content: `✅ Se eliminaron todas las advertencias para ${nombre}.`,
-      ephemeral: false,
-    });
-  }
+  const embed = new EmbedBuilder()
+    .setTitle(`Advertencias eliminadas de ${nombre}`)
+    .setColor(0x00ff00)
+    .setDescription(
+      wasBanned
+        ? "**El usuario ya no está baneado**"
+        : "Todas las advertencias han sido eliminadas."
+    )
+    .setTimestamp();
+
+  return interaction.reply({ embeds: [embed] });
 }
 
 async function handleListar(interaction) {
@@ -245,14 +290,19 @@ async function handleListar(interaction) {
 
   if (users.length === 0) {
     return interaction.reply({
-      content: "No hay usuarios con advertencias.",
+      embeds: [
+        new EmbedBuilder()
+          .setTitle("Sin advertencias")
+          .setDescription("No hay usuarios con advertencias.")
+          .setColor("Green"),
+      ],
       ephemeral: true,
     });
   }
 
   const embed = new EmbedBuilder()
     .setTitle("Usuarios con Advertencias")
-    .setColor(0x0099ff)
+    .setColor("Red")
     .setTimestamp();
 
   const sortedUsers = [...users].sort((a, b) => b.warnings - a.warnings);
@@ -264,7 +314,7 @@ async function handleListar(interaction) {
 
   if (bannedUsers.length > 0) {
     embed.addFields({
-      name: "🚫 Usuarios Baneados",
+      name: "🚨 Usuarios Baneados",
       value:
         bannedUsers
           .map((user) => `**${user.name}** - ${user.warnings} advertencias`)
