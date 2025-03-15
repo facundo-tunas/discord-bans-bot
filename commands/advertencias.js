@@ -98,31 +98,64 @@ export default {
     ),
 
   async execute(interaction) {
-    const subcommand = interaction.options.getSubcommand();
+    try {
+      const subcommand = interaction.options.getSubcommand();
 
-    switch (subcommand) {
-      case "revisar":
-        return handleRevisar(interaction);
-      case "agregar":
-        return handleAgregar(interaction);
-      case "quitar":
-        return handleQuitar(interaction);
-      case "limpiar":
-        return handleLimpiar(interaction);
-      case "listar":
-        return handleListar(interaction);
-      case "resetear_lista":
-        return handleResetearLista(interaction);
-      default:
-        return interaction.reply({
-          embeds: [
-            new EmbedBuilder()
-              .setTitle("Error")
-              .setDescription("Subcomando desconocido.")
-              .setColor(0xff0000),
-          ],
-          ephemeral: true,
-        });
+      switch (subcommand) {
+        case "revisar":
+          return await handleRevisar(interaction);
+        case "agregar":
+          return await handleAgregar(interaction);
+        case "quitar":
+          return await handleQuitar(interaction);
+        case "limpiar":
+          return await handleLimpiar(interaction);
+        case "listar":
+          return await handleListar(interaction);
+        case "resetear_lista":
+          return await handleResetearLista(interaction);
+        default:
+          return await interaction.reply({
+            embeds: [
+              new EmbedBuilder()
+                .setTitle("Error")
+                .setDescription("Subcomando desconocido.")
+                .setColor(0xff0000),
+            ],
+            ephemeral: true,
+          });
+      }
+    } catch (error) {
+      console.error("Command execution error:", error);
+
+      if (!interaction.replied && !interaction.deferred) {
+        try {
+          await interaction.reply({
+            embeds: [
+              new EmbedBuilder()
+                .setTitle("Error")
+                .setDescription("Ocurrió un error al ejecutar este comando.")
+                .setColor(0xff0000),
+            ],
+            ephemeral: true,
+          });
+        } catch (replyError) {
+          console.error("Could not send error response:", replyError);
+        }
+      } else if (interaction.deferred && !interaction.replied) {
+        try {
+          await interaction.editReply({
+            embeds: [
+              new EmbedBuilder()
+                .setTitle("Error")
+                .setDescription("Ocurrió un error al ejecutar este comando.")
+                .setColor(0xff0000),
+            ],
+          });
+        } catch (editError) {
+          console.error("Could not edit reply with error:", editError);
+        }
+      }
     }
   },
 };
