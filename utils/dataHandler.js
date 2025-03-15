@@ -55,6 +55,7 @@ export function addWarning(name, reason, issuedBy) {
       reasons: [],
       banned: false,
       banCount: 0,
+      permaban: false,
     };
     data.users.push(user);
   }
@@ -116,6 +117,35 @@ export function clearWarnings(name) {
   user.warnings = 0;
   user.reasons = [];
   user.banned = false;
+
+  saveData(data);
+  return user;
+}
+
+export function permabanUser(name, reason, issuedBy) {
+  const data = loadData();
+  let user = data.users.find(
+    (user) => user.name.toLowerCase() === name.toLowerCase()
+  );
+
+  if (!user) {
+    user = {
+      name,
+      warnings: 0,
+      reasons: [],
+      banCount: 0,
+      permaban: true,
+    };
+    data.users.push(user);
+  } else {
+    user.permaban = true;
+  }
+
+  user.reasons.push({
+    date: new Date().toISOString(),
+    reason: `PERMABAN: ${reason}`,
+    issuedBy,
+  });
 
   saveData(data);
   return user;

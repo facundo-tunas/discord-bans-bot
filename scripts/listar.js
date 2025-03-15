@@ -221,26 +221,50 @@ async function createWarningListEmbed(
 
   const sortedUsers = [...users].sort((a, b) => b.warnings - a.warnings);
 
-  const bannedUsers = sortedUsers.filter((user) => user.banned);
+  const permabannedUsers = sortedUsers.filter((user) => user.permaban === true);
+  const bannedUsers = sortedUsers.filter(
+    (user) => user.banned && !user.permaban
+  );
   const warnedUsers = sortedUsers.filter(
-    (user) => !user.banned && user.warnings > 0
+    (user) => !user.banned && !user.permaban && user.warnings > 0
   );
 
   if (paginate) {
     const usersPerPage = 20;
-    const totalUsers = bannedUsers.length + warnedUsers.length;
+    const totalUsers =
+      permabannedUsers.length + bannedUsers.length + warnedUsers.length;
     const totalPages = Math.ceil(totalUsers / usersPerPage);
     const validPage = Math.max(1, Math.min(page, totalPages));
 
     const startIndex = (validPage - 1) * usersPerPage;
     const endIndex = startIndex + usersPerPage;
 
-    let usersToShow = [];
+    let usersToShow = [
+      ...permabannedUsers,
+      ...bannedUsers,
+      ...warnedUsers,
+    ].slice(startIndex, endIndex);
 
-    usersToShow = [...bannedUsers, ...warnedUsers].slice(startIndex, endIndex);
+    const paginatedPermabannedUsers = usersToShow.filter(
+      (user) => user.permaban === true
+    );
+    const paginatedBannedUsers = usersToShow.filter(
+      (user) => user.banned && !user.permaban
+    );
+    const paginatedWarnedUsers = usersToShow.filter(
+      (user) => !user.banned && !user.permaban
+    );
 
-    const paginatedBannedUsers = usersToShow.filter((user) => user.banned);
-    const paginatedWarnedUsers = usersToShow.filter((user) => !user.banned);
+    if (paginatedPermabannedUsers.length > 0) {
+      embed.addFields({
+        name: "🔒 Usuarios Permabaneados",
+        value:
+          paginatedPermabannedUsers
+            .map((user) => `**${user.name}** - Ban permanente`)
+            .join("\n")
+            .substring(0, 1020) || "Ninguno",
+      });
+    }
 
     if (paginatedBannedUsers.length > 0) {
       embed.addFields({
@@ -273,6 +297,27 @@ async function createWarningListEmbed(
     return { embed, totalPages };
   } else {
     const maxUsersPerField = 20;
+
+    if (permabannedUsers.length > 0) {
+      for (let i = 0; i < permabannedUsers.length; i += maxUsersPerField) {
+        const batchPermabannedUsers = permabannedUsers.slice(
+          i,
+          i + maxUsersPerField
+        );
+
+        embed.addFields({
+          name:
+            i === 0
+              ? "🔒 Usuarios Permabaneados"
+              : "🔒 Usuarios Permabaneados (cont.)",
+          value:
+            batchPermabannedUsers
+              .map((user) => `**${user.name}** - Ban permanente`)
+              .join("\n")
+              .substring(0, 1020) || "Ninguno",
+        });
+      }
+    }
 
     if (bannedUsers.length > 0) {
       for (let i = 0; i < bannedUsers.length; i += maxUsersPerField) {
@@ -310,7 +355,10 @@ async function createWarningListEmbed(
       }
     }
 
-    if (bannedUsers.length + warnedUsers.length > 50) {
+    if (
+      permabannedUsers.length + bannedUsers.length + warnedUsers.length >
+      50
+    ) {
       embed.setDescription(
         "Hay muchos usuarios con advertencias. Usa `/adv listar pagina:X` para ver la lista paginada."
       );

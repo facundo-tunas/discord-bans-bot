@@ -792,52 +792,17 @@
       "banCount": 0
     },
     {
-      "name": "XD",
-      "warnings": 8,
+      "name": "mili-",
+      "warnings": 0,
       "reasons": [
         {
-          "date": "2025-03-15T15:34:07.011Z",
-          "reason": "test",
-          "issuedBy": "uruwuay"
-        },
-        {
-          "date": "2025-03-15T15:34:07.651Z",
-          "reason": "test",
-          "issuedBy": "uruwuay"
-        },
-        {
-          "date": "2025-03-15T15:34:10.306Z",
-          "reason": "test",
-          "issuedBy": "uruwuay"
-        },
-        {
-          "date": "2025-03-15T15:35:46.453Z",
-          "reason": "test",
-          "issuedBy": "uruwuay"
-        },
-        {
-          "date": "2025-03-15T15:36:15.462Z",
-          "reason": "test",
-          "issuedBy": "uruwuay"
-        },
-        {
-          "date": "2025-03-15T15:36:38.569Z",
-          "reason": "test",
-          "issuedBy": "uruwuay"
-        },
-        {
-          "date": "2025-03-15T15:36:57.367Z",
-          "reason": "test",
-          "issuedBy": "uruwuay"
-        },
-        {
-          "date": "2025-03-15T15:37:15.915Z",
-          "reason": "test",
-          "issuedBy": "uruwuay"
+          "date": "2025-03-15T16:14:23.782Z",
+          "reason": "PERMABAN: Esperar y tosquear lideres.",
+          "issuedBy": "haverdie"
         }
       ],
-      "banned": true,
-      "banCount": 1
+      "banCount": 0,
+      "permaban": true
     }
   ]
 }

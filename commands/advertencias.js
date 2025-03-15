@@ -5,6 +5,7 @@ import {
   removeWarning,
   clearWarnings,
   getAllUsers,
+  permabanUser,
 } from "../utils/dataHandler.js";
 
 import { hasModeratorRole } from "../utils/hasPermissions.js";
@@ -84,17 +85,29 @@ export default {
             )
             .setRequired(false)
         )
-        .addIntegerOption((option) =>
-          option
-            .setName("pagina")
-            .setDescription("Número de página a mostrar")
-            .setRequired(false)
-        )
     )
     .addSubcommand((subcommand) =>
       subcommand
         .setName("resetear_lista")
         .setDescription("Eliminar la lista persistente actual")
+    )
+    .addSubcommand((subcommand) =>
+      subcommand
+        .setName("permaban")
+        .setDescription("Permabanea al usuario. (Ignora advertencias).")
+        .addStringOption((option) =>
+          option
+            .setName("nombre")
+            .setDescription("El nombre del usuario")
+            .setRequired(true)
+            .setAutocomplete(true)
+        )
+        .addStringOption((option) =>
+          option
+            .setName("razon")
+            .setDescription("La razón del permaban.")
+            .setRequired(true)
+        )
     ),
 
   async execute(interaction) {
@@ -114,6 +127,8 @@ export default {
           return await handleListar(interaction);
         case "resetear_lista":
           return await handleResetearLista(interaction);
+        case "permaban":
+          return await handlePermaban(interaction);
         default:
           return await interaction.reply({
             embeds: [
@@ -362,4 +377,49 @@ async function handleLimpiar(interaction) {
   await interaction.reply({ embeds: [embed] });
 
   await updatePersistentList(interaction.client);
+}
+
+async function handlePermaban(interaction) {
+  if (!hasModeratorRole(interaction.member)) {
+    return interaction.reply({
+      embeds: [
+        new EmbedBuilder()
+          .setTitle("Permiso denegado")
+          .setDescription("No tienes permiso para usar este comando.")
+          .setColor(0xff0000),
+      ],
+      ephemeral: true,
+    });
+  }
+
+  const nombre = interaction.options.getString("nombre");
+  const razon =
+    interaction.options.getString("razon") || "No se especificó una razón";
+  const issuedBy = interaction.user.username;
+
+  let user = permabanUser(nombre, razon, issuedBy);
+
+  const embed = new EmbedBuilder()
+    .setTitle(`Usuario Permabaneado: ${nombre}`)
+    .setColor(0xff0000)
+    .setDescription(`**Razón:** ${razon}`)
+    .addFields({
+      name: "Estado",
+      value:
+        "Este usuario ha sido permanentemente baneado y no podrá ser desbaneado con el comando normal.",
+    })
+    .setFooter({ text: `Permaban emitido por: ${issuedBy}` })
+    .setTimestamp();
+
+  try {
+    await interaction.reply({ embeds: [embed] });
+  } catch (error) {
+    console.error("Error responding to interaction:", error);
+  }
+
+  try {
+    await updatePersistentList(interaction.client);
+  } catch (error) {
+    console.error("Error updating persistent list:", error);
+  }
 }
