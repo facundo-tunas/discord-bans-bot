@@ -42,9 +42,42 @@ export async function handleListar(interaction) {
     });
   }
 
-  //  pagination buttons
   let components = [];
-  if (needsPagination && !isPersistent) {
+
+  if (isPersistent) {
+    if (needsPagination) {
+      const paginationRow = new ActionRowBuilder().addComponents(
+        new ButtonBuilder()
+          .setCustomId("prev_page")
+          .setLabel("◀️ Anterior")
+          .setStyle(ButtonStyle.Primary)
+          .setDisabled(requestedPage <= 1),
+        new ButtonBuilder()
+          .setCustomId("next_page")
+          .setLabel("Siguiente ▶️")
+          .setStyle(ButtonStyle.Primary)
+          .setDisabled(requestedPage >= totalPages)
+      );
+
+      const refreshRow = new ActionRowBuilder().addComponents(
+        new ButtonBuilder()
+          .setCustomId("refresh_list")
+          .setLabel("🔄 Actualizar")
+          .setStyle(ButtonStyle.Success)
+      );
+
+      components = [paginationRow, refreshRow];
+    } else {
+      const refreshRow = new ActionRowBuilder().addComponents(
+        new ButtonBuilder()
+          .setCustomId("refresh_list")
+          .setLabel("🔄 Actualizar")
+          .setStyle(ButtonStyle.Success)
+      );
+
+      components = [refreshRow];
+    }
+  } else if (needsPagination) {
     const row = new ActionRowBuilder().addComponents(
       new ButtonBuilder()
         .setCustomId("prev_page")
@@ -60,44 +93,24 @@ export async function handleListar(interaction) {
     components = [row];
   }
 
-  if (isPersistent) {
-    const reply = await interaction.reply({
-      embeds: [embed],
-      fetchReply: true,
-      ephemeral: false,
-      // Note: We don't add components to persistent lists as they would timeout
+  const message = await interaction.reply({
+    embeds: [embed],
+    components: components,
+    ephemeral: false,
+    fetchReply: true,
+  });
+
+  if (needsPagination) {
+    const collector = message.createMessageComponentCollector({
+      componentType: ComponentType.Button,
+      filter: (i) => i.customId === "prev_page" || i.customId === "next_page",
+      time: 300000,
     });
 
-    saveActiveListMessage(reply.id, interaction.channelId, interaction.guildId);
+    let currentPage = requestedPage;
 
-    await interaction.followUp({
-      embeds: [
-        new EmbedBuilder()
-          .setTitle("Lista persistente creada")
-          .setDescription(
-            "Se ha creado una lista de advertencias que se actualizará automáticamente cuando cambie el estado de las advertencias."
-          )
-          .setColor(0x00ff00),
-      ],
-      ephemeral: true,
-    });
-  } else {
-    const message = await interaction.reply({
-      embeds: [embed],
-      components: components,
-      ephemeral: false,
-      fetchReply: true,
-    });
-
-    if (needsPagination) {
-      const collector = message.createMessageComponentCollector({
-        componentType: ComponentType.Button,
-        time: 300000, // 5 minutes timeout
-      });
-
-      let currentPage = requestedPage;
-
-      collector.on("collect", async (i) => {
+    collector.on("collect", async (i) => {
+      try {
         if (i.customId === "prev_page") {
           currentPage = Math.max(1, currentPage - 1);
         } else if (i.customId === "next_page") {
@@ -106,12 +119,14 @@ export async function handleListar(interaction) {
 
         const { embed: newEmbed } = await createWarningListEmbed(
           users,
-          false,
+          isPersistent,
           currentPage,
           true
         );
 
-        const updatedRow = new ActionRowBuilder().addComponents(
+        let components = [];
+
+        const paginationRow = new ActionRowBuilder().addComponents(
           new ButtonBuilder()
             .setCustomId("prev_page")
             .setLabel("◀️ Anterior")
@@ -124,31 +139,86 @@ export async function handleListar(interaction) {
             .setDisabled(currentPage >= totalPages)
         );
 
-        await i.update({
-          embeds: [newEmbed],
-          components: [updatedRow],
-        });
-      });
+        components.push(paginationRow);
 
-      collector.on("end", () => {
-        try {
-          const disabledRow = new ActionRowBuilder().addComponents(
+        if (isPersistent) {
+          const refreshRow = new ActionRowBuilder().addComponents(
             new ButtonBuilder()
-              .setCustomId("prev_page")
-              .setLabel("◀️ Anterior")
-              .setStyle(ButtonStyle.Secondary)
-              .setDisabled(true),
-            new ButtonBuilder()
-              .setCustomId("next_page")
-              .setLabel("Siguiente ▶️")
-              .setStyle(ButtonStyle.Secondary)
-              .setDisabled(true)
+              .setCustomId("refresh_list")
+              .setLabel("🔄 Actualizar")
+              .setStyle(ButtonStyle.Success)
           );
 
-          message.edit({ components: [disabledRow] }).catch(console.error);
-        } catch (error) {
-          console.error("Error updating buttons after timeout:", error);
+          components.push(refreshRow);
         }
+
+        await i
+          .update({
+            embeds: [newEmbed],
+            components: components,
+          })
+          .catch((error) => {
+            console.error("Error updating pagination:", error);
+          });
+      } catch (error) {
+        console.error("Error in collector:", error);
+      }
+    });
+
+    collector.on("end", () => {
+      console.log("xd");
+      try {
+        const components = [];
+
+        const disabledPaginationRow = new ActionRowBuilder().addComponents(
+          new ButtonBuilder()
+            .setCustomId("prev_page")
+            .setLabel("◀️ Anterior")
+            .setStyle(ButtonStyle.Secondary)
+            .setDisabled(true),
+          new ButtonBuilder()
+            .setCustomId("next_page")
+            .setLabel("Siguiente ▶️")
+            .setStyle(ButtonStyle.Secondary)
+            .setDisabled(true)
+        );
+
+        components.push(disabledPaginationRow);
+
+        if (isPersistent) {
+          const refreshRow = new ActionRowBuilder().addComponents(
+            new ButtonBuilder()
+              .setCustomId("refresh_list")
+              .setLabel("🔄 Actualizar")
+              .setStyle(ButtonStyle.Success)
+          );
+
+          components.push(refreshRow);
+        }
+
+        message.edit({ components: components }).catch(console.error);
+      } catch (error) {
+        console.error("Error updating buttons after timeout:", error);
+      }
+    });
+
+    if (isPersistent) {
+      saveActiveListMessage(
+        message.id,
+        interaction.channelId,
+        interaction.guildId
+      );
+
+      await interaction.followUp({
+        embeds: [
+          new EmbedBuilder()
+            .setTitle("Lista persistente creada")
+            .setDescription(
+              "Se ha creado una lista de advertencias que se actualizará automáticamente cuando cambie el estado de las advertencias. Usa el botón de actualizar para refrescar la lista y los controles de paginación."
+            )
+            .setColor(0x00ff00),
+        ],
+        ephemeral: true,
       });
     }
   }
@@ -197,7 +267,7 @@ export async function handleResetearLista(interaction) {
   });
 }
 
-async function createWarningListEmbed(
+export async function createWarningListEmbed(
   users,
   persistent,
   page = 1,
@@ -260,7 +330,12 @@ async function createWarningListEmbed(
         name: "🔒 Usuarios Permabaneados",
         value:
           paginatedPermabannedUsers
-            .map((user) => `**${user.name}** - Ban permanente`)
+            .map(
+              (user) =>
+                `**${user.name}** - ${
+                  user.permabanReason || "Razón desconocida."
+                }`
+            )
             .join("\n")
             .substring(0, 1020) || "Ninguno",
       });
@@ -428,7 +503,9 @@ export async function updatePersistentList(client) {
       users.length > 20
     );
 
-    await targetMessage.edit({ embeds: [updatedEmbed] });
+    await targetMessage.edit({
+      embeds: [updatedEmbed],
+    });
     console.log("Successfully updated warnings list");
   } catch (error) {
     console.error("Error updating persistent warnings list:", error);

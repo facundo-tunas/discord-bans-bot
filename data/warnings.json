@@ -132,16 +132,21 @@
     },
     {
       "name": "Canø",
-      "warnings": 4,
+      "warnings": 5,
       "reasons": [
         {
           "date": "2025-03-14T20:28:29.970Z",
           "reason": "default reason",
           "issuedBy": "system"
+        },
+        {
+          "date": "2025-03-16T22:42:40.904Z",
+          "reason": "wallcut mal ejecutado",
+          "issuedBy": "crespo8_"
         }
       ],
-      "banned": false,
-      "banCount": 0
+      "banned": true,
+      "banCount": 1
     },
     {
       "name": "Pajaro",
@@ -327,12 +332,17 @@
     },
     {
       "name": "Dybagol",
-      "warnings": 1,
+      "warnings": 2,
       "reasons": [
         {
           "date": "2025-03-14T20:28:29.970Z",
           "reason": "default reason",
           "issuedBy": "system"
+        },
+        {
+          "date": "2025-03-16T23:11:47.195Z",
+          "reason": "wallcut mal ejecutado",
+          "issuedBy": "crespo8_"
         }
       ],
       "banned": false,
@@ -428,12 +438,22 @@
     },
     {
       "name": "Boregard",
-      "warnings": 1,
+      "warnings": 3,
       "reasons": [
         {
           "date": "2025-03-14T20:28:29.970Z",
           "reason": "default reason",
           "issuedBy": "system"
+        },
+        {
+          "date": "2025-03-16T21:48:57.822Z",
+          "reason": "encerrar contra la pared/boost",
+          "issuedBy": "xrv7x"
+        },
+        {
+          "date": "2025-03-16T21:57:53.755Z",
+          "reason": "encerrar contra la pared en la salida/boost en salida(?)",
+          "issuedBy": "xrv7x"
         }
       ],
       "banned": false,
@@ -545,12 +565,17 @@
     },
     {
       "name": "L'leul",
-      "warnings": 1,
+      "warnings": 2,
       "reasons": [
         {
           "date": "2025-03-14T20:28:29.970Z",
           "reason": "default reason",
           "issuedBy": "system"
+        },
+        {
+          "date": "2025-03-16T04:05:36.577Z",
+          "reason": "ir en reversa",
+          "issuedBy": "leyton0191"
         }
       ],
       "banned": false,
@@ -803,6 +828,210 @@
       ],
       "banCount": 0,
       "permaban": true
+    },
+    {
+      "name": "thepupierro!",
+      "warnings": 0,
+      "reasons": [
+        {
+          "date": "2025-03-15T19:11:09.013Z",
+          "reason": "PERMABAN: No se especificó una razón",
+          "issuedBy": "uruwuay"
+        }
+      ],
+      "banCount": 0,
+      "permaban": true
+    },
+    {
+      "name": "scrash",
+      "warnings": 5,
+      "reasons": [
+        {
+          "date": "2025-03-16T01:08:26.054Z",
+          "reason": "frenarse antes de llegar a meta",
+          "issuedBy": "facu3061"
+        },
+        {
+          "date": "2025-03-16T01:45:09.149Z",
+          "reason": "frenarse antes de llegar a meta",
+          "issuedBy": "uruwuay"
+        },
+        {
+          "date": "2025-03-16T01:45:11.102Z",
+          "reason": "frenarse antes de llegar a meta",
+          "issuedBy": "uruwuay"
+        },
+        {
+          "date": "2025-03-16T01:45:12.475Z",
+          "reason": "frenarse antes de llegar a meta",
+          "issuedBy": "uruwuay"
+        },
+        {
+          "date": "2025-03-16T01:45:15.348Z",
+          "reason": "frenarse antes de llegar a meta",
+          "issuedBy": "uruwuay"
+        }
+      ],
+      "banned": true,
+      "banCount": 1,
+      "permaban": false
+    },
+    {
+      "name": "uruwhy",
+      "warnings": 3,
+      "reasons": [
+        {
+          "date": "2025-03-16T04:12:34.742Z",
+          "reason": "adv 1",
+          "issuedBy": "romp4ge"
+        },
+        {
+          "date": "2025-03-16T04:12:38.255Z",
+          "reason": "adv 2",
+          "issuedBy": "romp4ge"
+        },
+        {
+          "date": "2025-03-16T04:12:46.091Z",
+          "reason": "insultar",
+          "issuedBy": "romp4ge"
+        }
+      ],
+      "banned": false,
+      "banCount": 0,
+      "permaban": false
+    },
+    {
+      "name": "Campi",
+      "warnings": 3,
+      "reasons": [
+        {
+          "date": "2025-03-16T04:13:26.723Z",
+          "reason": "PERMABAN: No se especificó una razón",
+          "issuedBy": "uruwuay"
+        },
+        {
+          "date": "2025-03-16T23:00:06.427Z",
+          "reason": "n",
+          "issuedBy": "uruwuay"
+        },
+        {
+          "date": "2025-03-16T23:01:10.193Z",
+          "reason": "l",
+          "issuedBy": "uruwuay"
+        },
+        {
+          "date": "2025-03-16T23:02:34.598Z",
+          "reason": "c",
+          "issuedBy": "uruwuay"
+        }
+      ],
+      "banCount": 0,
+      "permaban": true
+    },
+    {
+      "name": "LELETO",
+      "warnings": 0,
+      "reasons": [
+        {
+          "date": "2025-03-16T04:36:59.940Z",
+          "reason": "PERMABAN: No se especificó una razón",
+          "issuedBy": "haverdie"
+        }
+      ],
+      "banCount": 0,
+      "permaban": true
+    },
+    {
+      "name": "el magordito",
+      "warnings": 0,
+      "reasons": [
+        {
+          "date": "2025-03-16T07:24:01.653Z",
+          "reason": "PERMABAN: No se especificó una razón",
+          "issuedBy": "uruwuay"
+        }
+      ],
+      "banCount": 0,
+      "permaban": true
+    },
+    {
+      "name": "timo",
+      "warnings": 0,
+      "reasons": [
+        {
+          "date": "2025-03-16T16:33:13.023Z",
+          "reason": "PERMABAN: No se especificó una razón",
+          "issuedBy": "uruwuay"
+        }
+      ],
+      "banCount": 0,
+      "permaban": true
+    },
+    {
+      "name": "rreo",
+      "warnings": 1,
+      "reasons": [
+        {
+          "date": "2025-03-16T17:31:01.830Z",
+          "reason": "brake test curva",
+          "issuedBy": "itd8"
+        }
+      ],
+      "banned": false,
+      "banCount": 0,
+      "permaban": false
+    },
+    {
+      "name": "Enlistedowo",
+      "warnings": 1,
+      "reasons": [
+        {
+          "date": "2025-03-16T18:52:45.413Z",
+          "reason": "tosquear en la recta",
+          "issuedBy": "xrv7x"
+        }
+      ],
+      "banned": false,
+      "banCount": 0,
+      "permaban": false
+    },
+    {
+      "name": "TheFishStillSmiles",
+      "warnings": 2,
+      "reasons": [
+        {
+          "date": "2025-03-16T21:27:32.770Z",
+          "reason": "wallcut mal ejecutado",
+          "issuedBy": "facu3061"
+        },
+        {
+          "date": "2025-03-16T21:27:47.636Z",
+          "reason": "wallcut mal ejecutado",
+          "issuedBy": "facu3061"
+        }
+      ],
+      "banned": false,
+      "banCount": 0,
+      "permaban": false
+    },
+    {
+      "name": "PK16",
+      "warnings": 2,
+      "reasons": [
+        {
+          "date": "2025-03-16T21:28:06.793Z",
+          "reason": "wallcut mal ejecutado",
+          "issuedBy": "facu3061"
+        },
+        {
+          "date": "2025-03-16T21:28:19.981Z",
+          "reason": "wallcut mal ejecutado",
+          "issuedBy": "facu3061"
+        }
+      ],
+      "banned": false,
+      "banCount": 0,
+      "permaban": false
     }
   ]
 }
