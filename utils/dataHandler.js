@@ -135,17 +135,13 @@ export function permabanUser(name, reason, issuedBy) {
       reasons: [],
       banCount: 0,
       permaban: true,
+      permabanReason: reason,
     };
     data.users.push(user);
   } else {
     user.permaban = true;
+    user.permabanReason = reason;
   }
-
-  user.reasons.push({
-    date: new Date().toISOString(),
-    reason: `PERMABAN: ${reason}`,
-    issuedBy,
-  });
 
   saveData(data);
   return user;

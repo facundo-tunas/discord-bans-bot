@@ -104,7 +104,7 @@ export default {
         )
         .addStringOption((option) =>
           option
-            .setName("razon")
+            .setName("razón")
             .setDescription("La razón del permaban.")
             .setRequired(true)
         )
@@ -394,7 +394,7 @@ async function handlePermaban(interaction) {
 
   const nombre = interaction.options.getString("nombre");
   const razon =
-    interaction.options.getString("razon") || "No se especificó una razón";
+    interaction.options.getString("razón") || "No se especificó una razón";
   const issuedBy = interaction.user.username;
 
   let user = permabanUser(nombre, razon, issuedBy);

@@ -901,34 +901,6 @@
       "permaban": false
     },
     {
-      "name": "Campi",
-      "warnings": 3,
-      "reasons": [
-        {
-          "date": "2025-03-16T04:13:26.723Z",
-          "reason": "PERMABAN: No se especificó una razón",
-          "issuedBy": "uruwuay"
-        },
-        {
-          "date": "2025-03-16T23:00:06.427Z",
-          "reason": "n",
-          "issuedBy": "uruwuay"
-        },
-        {
-          "date": "2025-03-16T23:01:10.193Z",
-          "reason": "l",
-          "issuedBy": "uruwuay"
-        },
-        {
-          "date": "2025-03-16T23:02:34.598Z",
-          "reason": "c",
-          "issuedBy": "uruwuay"
-        }
-      ],
-      "banCount": 0,
-      "permaban": true
-    },
-    {
       "name": "LELETO",
       "warnings": 0,
       "reasons": [
@@ -1032,6 +1004,14 @@
       "banned": false,
       "banCount": 0,
       "permaban": false
+    },
+    {
+      "name": "Campi",
+      "warnings": 0,
+      "reasons": [],
+      "banCount": 0,
+      "permaban": true,
+      "permabanReason": "mogolico de mierda hijo de ptua"
     }
   ]
 }
