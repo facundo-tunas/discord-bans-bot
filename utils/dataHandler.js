@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
+import { warningsForBan } from "./warningsUntilBan.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -67,7 +68,7 @@ export function addWarning(name, reason, issuedBy) {
     issuedBy,
   });
 
-  if (user.warnings >= 5 && !user.banned) {
+  if (user.warnings >= warningsForBan(user.banCount) && !user.banned) {
     user.banned = true;
     user.banCount ? user.banCount++ : (user.banCount = 1);
   }
@@ -91,7 +92,7 @@ export function removeWarning(name) {
     user.reasons.pop();
   }
 
-  if (user.banned && user.warnings < 5) {
+  if (user.banned && user.warnings < warningsForBan(user.banCount)) {
     user.banned = false;
   }
 

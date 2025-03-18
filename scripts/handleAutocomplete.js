@@ -1,4 +1,5 @@
 import { getAllUsers } from "../utils/dataHandler.js";
+import { warningsForBan } from "../utils/warningsUntilBan.js";
 
 export async function handleAutocomplete(interaction) {
   const focusedOption = interaction.options.getFocused(true);
@@ -20,7 +21,9 @@ export async function handleAutocomplete(interaction) {
       .slice(0, 25);
 
     const choices = filtered.map((user) => {
-      let label = `${user.name} (${user.warnings}/5)`;
+      let label = `${user.name} (${user.warnings}/${warningsForBan(
+        user.banCount
+      )})`;
       if (user.banned) label += " [BANEADO]";
 
       return {

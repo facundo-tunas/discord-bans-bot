@@ -14,6 +14,7 @@ import {
   handleResetearLista,
   updatePersistentList,
 } from "../scripts/listar.js";
+import { warningsForBan } from "../utils/warningsUntilBan.js";
 
 export default {
   data: new SlashCommandBuilder()
@@ -196,12 +197,14 @@ async function handleRevisar(interaction) {
   const embed = new EmbedBuilder()
     .setTitle(`Advertencias para ${user.name}`)
     .setColor(user.banned ? 0xff0000 : 0xffa500)
-    .setDescription(`Advertencias totales: ${user.warnings}/5`)
+    .setDescription(
+      `Advertencias totales: ${user.warnings}/${warningsForBan(user.banCount)}`
+    )
     .setFooter({
       text: user.banned
         ? `Este usuario está baneado | Bans totales: ${user.banCount}`
         : `${
-            5 - user.warnings
+            warningsForBan(user.banCount) - user.warnings
           } advertencias restantes para el ban | Bans totales: ${
             user.banCount
           }`,
@@ -257,7 +260,7 @@ async function handleAgregar(interaction) {
   const banState = user.banned
     ? `Este usuario está baneado | Bans totales: ${user.banCount}`
     : `${
-        5 - user.warnings
+        warningsForBan(user.banCount) - user.warnings
       } advertencias restantes para el ban | Bans totales: ${user.banCount}`;
 
   const embed = new EmbedBuilder()
@@ -321,8 +324,12 @@ async function handleQuitar(interaction) {
     .setColor(0x00ff00)
     .setDescription(
       existingUser.banned && !user.banned
-        ? `Advertencias actuales: ${user.warnings}/5\n**El usuario ya no está baneado**`
-        : `Advertencias actuales: ${user.warnings}/5`
+        ? `Advertencias actuales: ${user.warnings}/${warningsForBan(
+            user.banCount
+          )}\n**El usuario ya no está baneado**`
+        : `Advertencias actuales: ${user.warnings}/${warningsForBan(
+            user.banCount
+          )}`
     )
     .setTimestamp();
 

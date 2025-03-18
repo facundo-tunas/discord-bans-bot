@@ -132,20 +132,9 @@
     },
     {
       "name": "Canø",
-      "warnings": 5,
-      "reasons": [
-        {
-          "date": "2025-03-14T20:28:29.970Z",
-          "reason": "default reason",
-          "issuedBy": "system"
-        },
-        {
-          "date": "2025-03-16T22:42:40.904Z",
-          "reason": "wallcut mal ejecutado",
-          "issuedBy": "crespo8_"
-        }
-      ],
-      "banned": true,
+      "warnings": 0,
+      "reasons": [],
+      "banned": false,
       "banCount": 1
     },
     {
@@ -267,12 +256,17 @@
     },
     {
       "name": "Shavio",
-      "warnings": 1,
+      "warnings": 2,
       "reasons": [
         {
           "date": "2025-03-14T20:28:29.970Z",
           "reason": "default reason",
           "issuedBy": "system"
+        },
+        {
+          "date": "2025-03-17T04:00:10.428Z",
+          "reason": "kiltro me ordenó",
+          "issuedBy": "uruwuay"
         }
       ],
       "banned": false,
@@ -399,12 +393,17 @@
     },
     {
       "name": "IbaiLlanos (gordofobico)",
-      "warnings": 2,
+      "warnings": 3,
       "reasons": [
         {
           "date": "2025-03-14T20:28:29.970Z",
           "reason": "default reason",
           "issuedBy": "system"
+        },
+        {
+          "date": "2025-03-17T22:55:00.782Z",
+          "reason": "mogolico",
+          "issuedBy": "uruwuay"
         }
       ],
       "banned": false,
@@ -844,7 +843,7 @@
     },
     {
       "name": "scrash",
-      "warnings": 5,
+      "warnings": 6,
       "reasons": [
         {
           "date": "2025-03-16T01:08:26.054Z",
@@ -870,6 +869,11 @@
           "date": "2025-03-16T01:45:15.348Z",
           "reason": "frenarse antes de llegar a meta",
           "issuedBy": "uruwuay"
+        },
+        {
+          "date": "2025-03-17T21:50:38.668Z",
+          "reason": "wallcut mal ejecutado",
+          "issuedBy": "facu3061"
         }
       ],
       "banned": true,
@@ -1007,11 +1011,87 @@
     },
     {
       "name": "Campi",
-      "warnings": 0,
-      "reasons": [],
+      "warnings": 1,
+      "reasons": [
+        {
+          "date": "2025-03-17T00:25:36.787Z",
+          "reason": "test",
+          "issuedBy": "uruwuay"
+        }
+      ],
       "banCount": 0,
       "permaban": true,
       "permabanReason": "mogolico de mierda hijo de ptua"
+    },
+    {
+      "name": "Salah",
+      "warnings": 1,
+      "reasons": [
+        {
+          "date": "2025-03-17T02:32:45.242Z",
+          "reason": "tosquear",
+          "issuedBy": "ese.ekis.12"
+        }
+      ],
+      "banned": false,
+      "banCount": 0,
+      "permaban": false
+    },
+    {
+      "name": "facuuu",
+      "warnings": 1,
+      "reasons": [
+        {
+          "date": "2025-03-17T02:32:58.980Z",
+          "reason": "tosquear",
+          "issuedBy": "ese.ekis.12"
+        }
+      ],
+      "banned": false,
+      "banCount": 0,
+      "permaban": false
+    },
+    {
+      "name": "booyaka",
+      "warnings": 1,
+      "reasons": [
+        {
+          "date": "2025-03-17T19:24:54.840Z",
+          "reason": "wallcut mal ejecutado",
+          "issuedBy": "facu3061"
+        }
+      ],
+      "banned": false,
+      "banCount": 0,
+      "permaban": false
+    },
+    {
+      "name": "nf",
+      "warnings": 1,
+      "reasons": [
+        {
+          "date": "2025-03-17T22:03:48.443Z",
+          "reason": "encerrar contra el muro y boostearse",
+          "issuedBy": "homerob1"
+        }
+      ],
+      "banned": false,
+      "banCount": 0,
+      "permaban": false
+    },
+    {
+      "name": "Galo",
+      "warnings": 1,
+      "reasons": [
+        {
+          "date": "2025-03-18T00:42:58.085Z",
+          "reason": "encerrar contra la pared para evitar un adelantamiento",
+          "issuedBy": "ese.ekis.12"
+        }
+      ],
+      "banned": false,
+      "banCount": 0,
+      "permaban": false
     }
   ]
 }
