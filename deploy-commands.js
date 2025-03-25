@@ -22,6 +22,7 @@ for (const file of commandFiles) {
   if ("data" in command.default && "execute" in command.default) {
     commands.push(command.default.data.toJSON());
     console.log(`Loaded command: ${command.default.data.name}`);
+    
   } else {
     console.log(
       `[WARNING] The command at ${filePath} is missing a required "data" or "execute" property.`

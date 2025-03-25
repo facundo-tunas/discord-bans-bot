@@ -7,47 +7,47 @@ export default {
   execute(message, client) {
     if (message.author.bot) return;
 
-    if (message.channel.id === config.qchannel) {
-      if (message.content.toLowerCase() === "q") {
-        updateQCount(message.author.id);
-        let qCount = readQCount().count;
+    // if (message.channel.id === config.qchannel) {
+    //   if (message.content.toLowerCase() === "q") {
+    //     updateQCount(message.author.id);
+    //     let qCount = readQCount().count;
 
-        let embed = new EmbedBuilder()
-          .setTitle(`Q número **${qCount}**.`)
-          .setColor("Green");
+    //     let embed = new EmbedBuilder()
+    //       .setTitle(`Q número **${qCount}**.`)
+    //       .setColor("Green");
 
-        message
-          .reply({ embeds: [embed] })
-          .catch((error) =>
-            console.error("Failed to reply with q count:", error)
-          );
-        message
-          .react("☑️")
-          .catch((error) =>
-            console.error("Failed to react with check mark:", error)
-          );
-      }
-      // else {
-      //   qCount = 0;
-      //   updateQCount(0);
+    //     message
+    //       .reply({ embeds: [embed] })
+    //       .catch((error) =>
+    //         console.error("Failed to reply with q count:", error)
+    //       );
+    //     message
+    //       .react("☑️")
+    //       .catch((error) =>
+    //         console.error("Failed to react with check mark:", error)
+    //       );
+    //   }
+    // else {
+    //   qCount = 0;
+    //   updateQCount(0);
 
-      //   let embed = new EmbedBuilder()
-      //     .setTitle(`Se ha perdido la racha de Q.`)
-      //     .setFooter({
-      //       text: `Gracias al mogolico de ${message.author.username}.`,
-      //     })
-      //     .setColor("Red");
+    //   let embed = new EmbedBuilder()
+    //     .setTitle(`Se ha perdido la racha de Q.`)
+    //     .setFooter({
+    //       text: `Gracias al mogolico de ${message.author.username}.`,
+    //     })
+    //     .setColor("Red");
 
-      //   message
-      //     .reply({ embeds: [embed] })
-      //     .catch((error) => console.error("Failed to reply.", error));
+    //   message
+    //     .reply({ embeds: [embed] })
+    //     .catch((error) => console.error("Failed to reply.", error));
 
-      //   message
-      //     .react("❌")
-      //     .catch((error) =>
-      //       console.error("Failed to react with X mark:", error)
-      //     );
-      // }
-    }
+    //   message
+    //     .react("❌")
+    //     .catch((error) =>
+    //       console.error("Failed to react with X mark:", error)
+    //     );
+    // }
+    // }
   },
 };
