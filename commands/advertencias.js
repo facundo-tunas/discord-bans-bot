@@ -49,6 +49,14 @@ export default {
             .setDescription("La razón de la advertencia")
             .setRequired(true)
         )
+        .addIntegerOption((option) =>
+          option
+            .setName("numero")
+            .setDescription("Número de advertencias a añadir (por defecto: 1)")
+            .setRequired(false)
+            .setMinValue(1)
+            .setMaxValue(10)
+        )
     )
     .addSubcommand((subcommand) =>
       subcommand
@@ -251,11 +259,15 @@ async function handleAgregar(interaction) {
 
   const nombre = interaction.options.getString("nombre");
   const razon = interaction.options.getString("razon");
+  const numero = interaction.options.getInteger("numero") || 1;
   const truncatedReason =
     razon.length > 900 ? razon.substring(0, 897) + "..." : razon;
   const issuedBy = interaction.user.username;
 
-  const user = addWarning(nombre, truncatedReason, issuedBy);
+  let user;
+  for (let i = 0; i < numero; i++) {
+    user = addWarning(nombre, truncatedReason, issuedBy);
+  }
 
   const banState = user.banned
     ? `Este usuario está baneado | Bans totales: ${user.banCount}`
@@ -264,9 +276,13 @@ async function handleAgregar(interaction) {
       } advertencias restantes para el ban | Bans totales: ${user.banCount}`;
 
   const embed = new EmbedBuilder()
-    .setTitle(`Advertencia para ${nombre}`)
+    .setTitle(`${numero} Advertencia${numero > 1 ? "s" : ""} para ${nombre}`)
     .setColor(user.banned ? 0xff0000 : 0x0099ff)
     .setDescription(`**Razón:** ${truncatedReason}`)
+    .addFields({
+      name: "Detalles",
+      value: `Advertencias añadidas: ${numero}`,
+    })
     .setFooter({ text: `${banState}\nAdvertencia emitida por: ${issuedBy}` })
     .setTimestamp();
 
