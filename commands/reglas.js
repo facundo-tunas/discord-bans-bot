@@ -3,6 +3,7 @@ import {
   EmbedBuilder,
   ChannelType,
   PermissionFlagsBits,
+  PermissionsBitField,
 } from "discord.js";
 import fs from "fs";
 import path from "path";
@@ -14,12 +15,18 @@ const RULES_PATH = path.join(__dirname, "../data/rules.json");
 
 export default {
   data: new SlashCommandBuilder()
-    .setName("rules")
+    .setName("reglas")
     .setDescription("Gestiona las reglas del servidor")
     .addSubcommand((subcommand) =>
       subcommand
-        .setName("add")
+        .setName("agregar")
         .setDescription("Agrega una nueva regla al servidor")
+        .addIntegerOption((option) =>
+          option
+            .setDescription("Numero de la nueva regla")
+            .setName("numero")
+            .setRequired(true)
+        )
         .addStringOption((option) =>
           option
             .setName("texto")
@@ -41,29 +48,27 @@ export default {
     )
     .addSubcommand((subcommand) =>
       subcommand
-        .setName("show")
+        .setName("aleatoria")
         .setDescription("Muestra una regla aleatoria del canal")
     ),
   // .addSubcommand((subcommand) =>
   //   subcommand
-  //     .setName("configure")
+  //     .setName("configurar")
   //     .setDescription(
   //       "Crea un canal de reglas y muestra todas las reglas del servidor"
   //     )
-  //     .setDefaultMemberPermissions(PermissionFlagsBits.ManageChannels)
   // ),
-
   async execute(interaction) {
     const subcommand = interaction.options.getSubcommand();
 
     switch (subcommand) {
-      case "add":
+      case "agregar":
         await this.addRule(interaction);
         break;
-      case "show":
+      case "aleatoria":
         await this.showRandomRule(interaction);
         break;
-      case "configure":
+      case "configurar":
         await this.configureRulesChannel(interaction);
         break;
     }
@@ -79,6 +84,7 @@ export default {
 
     try {
       const ruleText = interaction.options.getString("texto");
+      const ruleNumber = interaction.options.getInteger("numero");
       const rulePunishment = interaction.options.getString("castigo") || null;
       const ruleImage = interaction.options.getString("imagen") || null;
 
@@ -89,15 +95,7 @@ export default {
         rulesData = { rules: [] };
       }
 
-      const generateUniqueRuleId = () => {
-        while (true) {
-          const newId = Math.floor(Math.random() * 100000) + 1;
-          const idExists = rulesData.rules.some((rule) => rule.id === newId);
-          if (!idExists) return newId;
-        }
-      };
-
-      const newRuleId = generateUniqueRuleId();
+      const newRuleId = ruleNumber;
 
       const newRule = {
         id: newRuleId,
@@ -130,7 +128,7 @@ export default {
 
       await interaction.reply({
         embeds: [confirmEmbed],
-        ephemeral: false,
+        ephemeral: true,
       });
 
       try {
@@ -218,72 +216,123 @@ export default {
     }
   },
 
-  // async configureRulesChannel(interaction) {
-  //   await interaction.deferReply({ ephemeral: true });
-  //   try {
-  //     if (!fs.existsSync(RULES_PATH)) {
-  //       return await interaction.editReply({
-  //         content: "El archivo de reglas no existe.",
-  //         ephemeral: true,
-  //       });
-  //     }
+  async configureRulesChannel(interaction) {
+    await interaction.deferReply({ ephemeral: true });
+    try {
+      if (!fs.existsSync(RULES_PATH)) {
+        return await interaction.editReply({
+          content: "El archivo de reglas no existe.",
+          ephemeral: true,
+        });
+      }
 
-  //     const rulesData = JSON.parse(fs.readFileSync(RULES_PATH, "utf8"));
+      const rulesData = JSON.parse(fs.readFileSync(RULES_PATH, "utf8"));
 
-  //     if (!rulesData.rules || rulesData.rules.length === 0) {
-  //       return await interaction.editReply({
-  //         content: "No hay reglas definidas en el archivo.",
-  //         ephemeral: true,
-  //       });
-  //     }
+      if (!rulesData.rules || rulesData.rules.length === 0) {
+        return await interaction.editReply({
+          content: "No hay reglas definidas en el archivo.",
+          ephemeral: true,
+        });
+      }
 
-  //     const rulesChannel = await interaction.guild.channels.create({
-  //       name: "📜-reglas-importantes",
-  //       type: ChannelType.GuildText,
-  //       topic: "Reglas Oficiales y Directrices del Servidor",
-  //       position: 0,
-  //     });
+      let rulesChannel = interaction.guild.channels.cache.find(
+        (channel) => channel.name === "📜-reglas-importantes"
+      );
 
-  //     const ruleEmbeds = rulesData.rules.map((rule, index) => {
-  //       const embed = new EmbedBuilder()
-  //         .setTitle(`Regla #${rule.id || index + 1}`)
-  //         .setDescription(rule.text)
-  //         .setColor("Blue")
-  //         .setFooter({
-  //           text: interaction.guild.name,
-  //           iconURL: interaction.guild.iconURL() || undefined,
-  //         });
+      if (rulesChannel) {
+        await rulesChannel.delete();
+        console.log(`Canal ${rulesChannel.name} eliminado.`);
+      }
 
-  //       if (rule.punishment) {
-  //         embed.addFields({
-  //           name: "Castigo",
-  //           value: rule.punishment,
-  //         });
-  //       }
+      rulesChannel = await interaction.guild.channels.create({
+        name: "📜-reglas-importantes",
+        type: ChannelType.GuildText,
+        topic: "Reglas Oficiales y Directrices del Servidor",
+        position: 0,
+      });
 
-  //       if (rule.imageUrl) {
-  //         embed.setThumbnail(rule.imageUrl);
-  //       }
+      const categoryId = "1288241528828858499";
+      const category = interaction.guild.channels.cache.get(categoryId);
+      if (category) {
+        await rulesChannel.setParent(category);
+        console.log(`Canal movido a la categoría: ${category.name}`);
+      } else {
+        console.log("Categoría no encontrada.");
+      }
 
-  //       return embed;
-  //     });
+      const allowedRoleNames = ["HOST MOD", "Staff", "FIA"];
 
-  //     for (const embed of ruleEmbeds) {
-  //       await rulesChannel.send({ embeds: [embed] });
-  //     }
+      const allowedRoles = allowedRoleNames
+        .map((roleName) => {
+          const role = interaction.guild.roles.cache.find(
+            (r) => r.name === roleName
+          );
+          return role ? role.id : null;
+        })
+        .filter((roleId) => roleId !== null);
 
-  //     const firstMessage = await rulesChannel.messages.fetch({ limit: 1 });
-  //     await firstMessage.first().pin();
+      if (allowedRoles.length === 0) {
+        return await interaction.editReply({
+          content: "No se encontraron roles válidos.",
+          ephemeral: true,
+        });
+      }
 
-  //     await interaction.editReply({
-  //       content: `✅ Canal de reglas creado en ${rulesChannel}`,
-  //     });
-  //   } catch (error) {
-  //     console.error("Error configurando el canal de reglas:", error);
-  //     await interaction.editReply({
-  //       content: "Hubo un error al configurar el canal de reglas.",
-  //       ephemeral: true,
-  //     });
-  //   }
-  // },
+      await rulesChannel.permissionOverwrites.set([
+        {
+          id: interaction.guild.id,
+          deny: [
+            PermissionsBitField.Flags.ViewChannel,
+            PermissionsBitField.Flags.SendMessages,
+          ],
+        },
+        ...allowedRoles.map((roleId) => ({
+          id: roleId,
+          allow: [PermissionsBitField.Flags.ViewChannel],
+          deny: [PermissionsBitField.Flags.SendMessages],
+        })),
+      ]);
+
+      const ruleEmbeds = rulesData.rules.map((rule, index) => {
+        const embed = new EmbedBuilder()
+          .setTitle(`Regla #${rule.id || index + 1}`)
+          .setDescription(rule.text)
+          .setColor("Blue")
+          .setFooter({
+            text: interaction.guild.name,
+            iconURL: interaction.guild.iconURL() || undefined,
+          });
+
+        if (rule.punishment) {
+          embed.addFields({
+            name: "Castigo",
+            value: rule.punishment,
+          });
+        }
+
+        if (rule.imageUrl) {
+          embed.setThumbnail(rule.imageUrl);
+        }
+
+        return embed;
+      });
+
+      for (const embed of ruleEmbeds) {
+        await rulesChannel.send({ embeds: [embed] });
+      }
+
+      const firstMessage = await rulesChannel.messages.fetch({ limit: 1 });
+      await firstMessage.first().pin();
+
+      await interaction.editReply({
+        content: `✅ Canal de reglas creado en ${rulesChannel}`,
+      });
+    } catch (error) {
+      console.error("Error configurando el canal de reglas:", error);
+      await interaction.editReply({
+        content: "Hubo un error al configurar el canal de reglas.",
+        ephemeral: true,
+      });
+    }
+  },
 };
