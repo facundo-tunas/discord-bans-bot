@@ -2,7 +2,6 @@ import {
   SlashCommandBuilder,
   EmbedBuilder,
   ChannelType,
-  PermissionFlagsBits,
   PermissionsBitField,
 } from "discord.js";
 import fs from "fs";
@@ -37,7 +36,7 @@ export default {
           option
             .setName("castigo")
             .setDescription("Descripción del castigo por incumplir la regla")
-            .setRequired(false)
+            .setRequired(true)
         )
         .addStringOption((option) =>
           option

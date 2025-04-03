@@ -12,6 +12,7 @@ import {
   saveActiveListMessage,
 } from "../utils/persistentList.js";
 import { hasModeratorRole } from "../utils/hasPermissions.js";
+import { warningsForBan } from "../utils/warningsUntilBan.js";
 
 export async function handleListar(interaction) {
   const isPersistent = interaction.options.getBoolean("persistente") || false;
@@ -357,7 +358,12 @@ export async function createWarningListEmbed(
         name: "⚠️ Usuarios Advertidos",
         value:
           paginatedWarnedUsers
-            .map((user) => `**${user.name}** - ${user.warnings}/5 advertencias`)
+            .map(
+              (user) =>
+                `**${user.name}** - ${user.warnings}/${warningsForBan(
+                  user.banCount
+                )} advertencias`
+            )
             .join("\n")
             .substring(0, 1020) || "Ninguno",
       });
@@ -422,7 +428,10 @@ export async function createWarningListEmbed(
           value:
             batchWarnedUsers
               .map(
-                (user) => `**${user.name}** - ${user.warnings}/5 advertencias`
+                (user) =>
+                  `**${user.name}** - ${user.warnings}/${warningsForBan(
+                    user.banCount
+                  )} advertencias`
               )
               .join("\n")
               .substring(0, 1020) || "Ninguno",
