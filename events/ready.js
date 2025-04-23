@@ -9,7 +9,9 @@ export default {
         (channel) => channel.name === "bot-warnings"
       );
 
-      if (warningsChannel) {
+      if (process.env.HIDDEN === "true") {
+        console.log("Hidden instance started!");
+      } else if (warningsChannel) {
         await warningsChannel.send(`🤖 BOT ENCENDIDO`);
         console.log(`Bot is ready! Logged in as ${client.user.tag}`);
       } else {
@@ -17,7 +19,6 @@ export default {
           `Bot is ready but could not find 'bot-warnings' channel. Logged in as ${client.user.tag}`
         );
       }
-
       client.user.setActivity("a Kevin...", {
         type: ActivityType.Watching,
       });
