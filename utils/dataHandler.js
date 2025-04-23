@@ -57,6 +57,7 @@ export function addWarning(name, reason, issuedBy) {
       banned: false,
       banCount: 0,
       permaban: false,
+      banEndDate: null,
     };
     data.users.push(user);
   }
@@ -71,6 +72,19 @@ export function addWarning(name, reason, issuedBy) {
   if (user.warnings >= warningsForBan(user.banCount) && !user.banned) {
     user.banned = true;
     user.banCount ? user.banCount++ : (user.banCount = 1);
+
+    const endDate = new Date();
+    if (user.banCount == 1) endDate.setDate(endDate.getDate() + 1);
+    if (user.banCount == 2) endDate.setDate(endDate.getDate() + 3);
+    if (user.banCount == 3) endDate.setDate(endDate.getDate() + 7);
+    if (user.banCount == 4) endDate.setDate(endDate.getDate() + 31);
+
+    user.banEndDate = endDate.toISOString();
+
+    if (user.banCount > 4) {
+      user.permaban = true;
+      user.permabanReason = "Llegó a los 5 baneos.";
+    }
   }
 
   saveData(data);
@@ -94,6 +108,7 @@ export function removeWarning(name) {
 
   if (user.banned && user.warnings < warningsForBan(user.banCount)) {
     user.banned = false;
+    user.banEndDate = null;
   }
 
   saveData(data);
@@ -103,6 +118,19 @@ export function removeWarning(name) {
 export function getAllUsers() {
   const data = loadData();
   return data.users;
+}
+
+export function getUsersToUnban() {
+  const data = loadData();
+  const currentDate = new Date();
+
+  return data.users.filter(
+    (user) =>
+      user.banned &&
+      !user.permaban &&
+      user.banEndDate &&
+      new Date(user.banEndDate) <= currentDate
+  );
 }
 
 export function clearWarnings(name) {
@@ -118,6 +146,7 @@ export function clearWarnings(name) {
   user.warnings = 0;
   user.reasons = [];
   user.banned = false;
+  user.banEndDate = null;
 
   saveData(data);
   return user;
@@ -135,13 +164,17 @@ export function permabanUser(name, reason, issuedBy) {
       warnings: 0,
       reasons: [],
       banCount: 0,
+      banned: true,
       permaban: true,
       permabanReason: reason,
+      banEndDate: null,
     };
     data.users.push(user);
   } else {
     user.permaban = true;
+    user.banned = true;
     user.permabanReason = reason;
+    user.banEndDate = null; // Permabans don't have end dates
   }
 
   saveData(data);

@@ -177,8 +177,18 @@ async function handleRefreshList(interaction) {
               embeds: [newEmbed],
               components: components,
             })
-            .catch((error) => {
-              console.error("Error updating pagination:", error);
+            .catch(async (error) => {
+              if (error.code === 10062) {
+                await i
+                  .reply({
+                    content:
+                      "⚠️ Esta interacción ya expiró. Haz clic en 🔄 Actualizar para obtener una nueva lista.",
+                    ephemeral: true,
+                  })
+                  .catch(() => {});
+              } else {
+                console.error("Error updating pagination:", error);
+              }
             });
         } catch (error) {
           console.error("Error in collector:", error);

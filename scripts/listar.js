@@ -347,7 +347,18 @@ export async function createWarningListEmbed(
         name: "🚨 Usuarios Baneados",
         value:
           paginatedBannedUsers
-            .map((user) => `**${user.name}** - ${user.warnings} advertencias`)
+            .map(
+              (user) =>
+                `**${user.name}** - ${
+                  user.warnings
+                } advertencias | Baneado hasta: ${
+                  user.banEndDate
+                    ? `<t:${Math.floor(
+                        new Date(user.banEndDate).getTime() / 1000
+                      )}:f>`
+                    : "Fecha desconocida"
+                }`
+            )
             .join("\n")
             .substring(0, 1020) || "Ninguno",
       });
@@ -409,7 +420,18 @@ export async function createWarningListEmbed(
             i === 0 ? "🚨 Usuarios Baneados" : "🚨 Usuarios Baneados (cont.)",
           value:
             batchBannedUsers
-              .map((user) => `**${user.name}** - ${user.warnings} advertencias`)
+              .map(
+                (user) =>
+                  `**${user.name}** - ${
+                    user.warnings
+                  } advertencias - Baneado hasta: ${
+                    user.banEndDate
+                      ? `<t:${Math.floor(
+                          new Date(user.banEndDate).getTime() / 1000
+                        )}:f>`
+                      : "Fecha desconocida"
+                  }`
+              )
               .join("\n")
               .substring(0, 1020) || "Ninguno",
         });

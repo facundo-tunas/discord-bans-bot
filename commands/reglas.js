@@ -9,7 +9,11 @@ import path from "path";
 import { fileURLToPath } from "url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const ALLOWED_USERS = ["752939088734060567", "211986166952624128"];
+const ALLOWED_USERS = [
+  "752939088734060567",
+  "211986166952624128",
+  "619584212403617811",
+];
 const RULES_PATH = path.join(__dirname, "../data/rules.json");
 
 export default {
