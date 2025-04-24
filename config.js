@@ -6,5 +6,6 @@ export default {
   clientId: process.env.CLIENT_ID,
 
   qchannel: "1326347406287306773",
+  warningsChannel: "1349935023536607334",
   ruleChannel: "",
 };

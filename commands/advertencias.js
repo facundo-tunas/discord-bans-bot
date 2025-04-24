@@ -15,6 +15,7 @@ import {
   updatePersistentList,
 } from "../scripts/listar.js";
 import { warningsForBan } from "../utils/warningsUntilBan.js";
+import config from "../config.js";
 
 export default {
   data: new SlashCommandBuilder()
@@ -286,7 +287,22 @@ async function handleAgregar(interaction) {
     .setFooter({ text: `${banState}\nAdvertencia emitida por: ${issuedBy}` })
     .setTimestamp();
 
-  await interaction.reply({ embeds: [embed] });
+  const channel = interaction.client.channels.cache.get(config.warningsChannel);
+  if (channel) {
+    await channel.send({ embeds: [embed] });
+  } else {
+    console.error("No se encontró el canal de advertencias.");
+  }
+
+  await interaction.reply({
+    embeds: [
+      new EmbedBuilder()
+        .setTitle("Advertencia Registrada.")
+        .setDescription(`Se han agregado ${numero} advertencia(s) a ${nombre}.`)
+        .setColor(0xffa500),
+    ],
+    ephemeral: true,
+  });
 
   await updatePersistentList(interaction.client);
 }
@@ -349,7 +365,22 @@ async function handleQuitar(interaction) {
     )
     .setTimestamp();
 
-  await interaction.reply({ embeds: [embed] });
+  const channel = interaction.client.channels.cache.get(config.warningsChannel);
+  if (channel) {
+    await channel.send({ embeds: [embed] });
+  } else {
+    console.error("No se encontró el canal de advertencias.");
+  }
+
+  await interaction.reply({
+    embeds: [
+      new EmbedBuilder()
+        .setTitle("Advertencia Eliminada.")
+        .setDescription(`Se ha borrado la última advertencia de ${nombre}.`)
+        .setColor(0xffa500),
+    ],
+    ephemeral: true,
+  });
 
   await updatePersistentList(interaction.client);
 }
@@ -397,7 +428,22 @@ async function handleLimpiar(interaction) {
     )
     .setTimestamp();
 
-  await interaction.reply({ embeds: [embed] });
+  const channel = interaction.client.channels.cache.get(config.warningsChannel);
+  if (channel) {
+    await channel.send({ embeds: [embed] });
+  } else {
+    console.error("No se encontró el canal de advertencias.");
+  }
+
+  await interaction.reply({
+    embeds: [
+      new EmbedBuilder()
+        .setTitle("Advertencia Limpada..")
+        .setDescription(`Se han limpiado las advertencias a ${nombre}.`)
+        .setColor(0xffa500),
+    ],
+    ephemeral: true,
+  });
 
   await updatePersistentList(interaction.client);
 }
@@ -435,7 +481,24 @@ async function handlePermaban(interaction) {
     .setTimestamp();
 
   try {
-    await interaction.reply({ embeds: [embed] });
+    const channel = interaction.client.channels.cache.get(
+      config.warningsChannel
+    );
+    if (channel) {
+      await channel.send({ embeds: [embed] });
+    } else {
+      console.error("No se encontró el canal de advertencias.");
+    }
+
+    await interaction.reply({
+      embeds: [
+        new EmbedBuilder()
+          .setTitle("Usuario Permabaneado.")
+          .setDescription(`Se ha permabaneado a ${nombre}.`)
+          .setColor(0xffa500),
+      ],
+      ephemeral: true,
+    });
   } catch (error) {
     console.error("Error responding to interaction:", error);
   }
