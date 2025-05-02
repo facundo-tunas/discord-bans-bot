@@ -270,6 +270,8 @@ async function handleAgregar(interaction) {
     user = addWarning(nombre, truncatedReason, issuedBy);
   }
 
+  const hostModsMention = `<@&${config.hostModsId}>`;
+
   const banState = user.banned
     ? `Este usuario está baneado | Bans totales: ${user.banCount}`
     : `${
@@ -290,6 +292,9 @@ async function handleAgregar(interaction) {
   const channel = interaction.client.channels.cache.get(config.warningsChannel);
   if (channel) {
     await channel.send({ embeds: [embed] });
+    if (user.banned) {
+      await channel.send(hostModsMention);
+    }
   } else {
     console.error("No se encontró el canal de advertencias.");
   }
