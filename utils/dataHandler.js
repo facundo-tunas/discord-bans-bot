@@ -182,3 +182,21 @@ export function permabanUser(name, reason, endDate = null) {
   saveData(data);
   return user;
 }
+
+export function removePermaban(name) {
+  const data = loadData();
+  const user = data.users.find(
+    (user) => user.name.toLowerCase() === name.toLowerCase()
+  );
+
+  if (!user) {
+    return null;
+  }
+
+  user.permaban = false;
+  user.banned = false;
+  user.banEndDate = null;
+
+  saveData(data);
+  return user;
+}

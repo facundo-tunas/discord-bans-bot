@@ -6,6 +6,7 @@ import {
   clearWarnings,
   getAllUsers,
   permabanUser,
+  removePermaban,
 } from "../utils/dataHandler.js";
 
 import { hasModeratorRole } from "../utils/hasPermissions.js";
@@ -127,6 +128,24 @@ export default {
             .setRequired(false)
             .setMinValue(1)
         )
+    )
+    .addSubcommand((subcommand) =>
+      subcommand
+        .setName("quitar_permaban")
+        .setDescription("Elimina el permaban de un usuario.")
+        .addStringOption((option) =>
+          option
+            .setName("nombre")
+            .setDescription("El nombre del usuario")
+            .setRequired(true)
+            .setAutocomplete(true)
+        )
+        .addStringOption((option) =>
+          option
+            .setName("razón")
+            .setDescription("La razón para quitar el permaban")
+            .setRequired(true)
+        )
     ),
 
   async execute(interaction) {
@@ -148,6 +167,8 @@ export default {
           return await handleResetearLista(interaction);
         case "permaban":
           return await handlePermaban(interaction);
+        case "quitar_permaban":
+          return await handleQuitarPermaban(interaction);
         default:
           return await interaction.reply({
             embeds: [
@@ -562,4 +583,77 @@ async function handlePermaban(interaction) {
   } catch (error) {
     console.error("Error updating persistent list:", error);
   }
+}
+
+async function handleQuitarPermaban(interaction) {
+  if (!hasModeratorRole(interaction.member)) {
+    return interaction.reply({
+      embeds: [
+        new EmbedBuilder()
+          .setTitle("Permiso denegado")
+          .setDescription("No tienes permiso para usar este comando.")
+          .setColor(0xff0000),
+      ],
+      ephemeral: true,
+    });
+  }
+
+  const nombre = interaction.options.getString("nombre");
+  const razon = interaction.options.getString("razón");
+  const issuedBy = interaction.user.username;
+
+  const existingUser = findUser(nombre);
+  if (!existingUser) {
+    return interaction.reply({
+      embeds: [
+        new EmbedBuilder()
+          .setTitle("Usuario no encontrado")
+          .setDescription(`No se encontró al usuario: ${nombre}`)
+          .setColor(0xff0000),
+      ],
+      ephemeral: true,
+    });
+  }
+
+  if (!existingUser.permaban) {
+    return interaction.reply({
+      embeds: [
+        new EmbedBuilder()
+          .setTitle("Sin permaban")
+          .setDescription(`${nombre} no tiene un permaban activo.`)
+          .setColor(0xffa500),
+      ],
+      ephemeral: true,
+    });
+  }
+
+  const user = removePermaban(nombre, razon, issuedBy);
+
+  const embed = new EmbedBuilder()
+    .setTitle(`Permaban removido: ${nombre}`)
+    .setColor(0x00ff00)
+    .setDescription(`**Razón:** ${razon}`)
+    .setFooter({
+      text: `Permaban removido por: ${issuedBy}`,
+    })
+    .setTimestamp();
+
+  const channel = interaction.client.channels.cache.get(config.warningsChannel);
+  if (channel) {
+    await channel.send({ embeds: [embed] });
+  } else {
+    console.error("No se encontró el canal de advertencias.");
+  }
+
+  await interaction.reply({
+    embeds: [
+      new EmbedBuilder()
+        .setTitle("Permaban Removido")
+        .setDescription(`Se ha removido el permaban de ${nombre}.`)
+        .setColor(0x00ff00),
+    ],
+    ephemeral: true,
+  });
+
+  await updatePersistentList(interaction.client);
 }
