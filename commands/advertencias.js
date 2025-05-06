@@ -118,6 +118,15 @@ export default {
             .setDescription("La razón del permaban.")
             .setRequired(true)
         )
+        .addIntegerOption((option) =>
+          option
+            .setName("dias")
+            .setDescription(
+              "Duración del ban en días (opcional, si se omite será un permaban real)"
+            )
+            .setRequired(false)
+            .setMinValue(1)
+        )
     ),
 
   async execute(interaction) {
@@ -219,6 +228,21 @@ async function handleRevisar(interaction) {
           }`,
     })
     .setTimestamp();
+
+  if (user.banned) {
+    let banStatus = "Estado del ban: ";
+    if (user.permaban && !user.banEndDate) {
+      banStatus += "Permanente";
+    } else {
+      const endDate = new Date(user.banEndDate);
+      banStatus += `Hasta ${endDate.toLocaleDateString()} ${endDate.toLocaleTimeString()}`;
+    }
+    embed.addFields({ name: "Estado del Ban", value: banStatus });
+
+    if (user.permabanReason) {
+      embed.addFields({ name: "Razón del Ban", value: user.permabanReason });
+    }
+  }
 
   if (user.reasons.length > 0) {
     embed.addFields(
@@ -469,20 +493,39 @@ async function handlePermaban(interaction) {
   const nombre = interaction.options.getString("nombre");
   const razon =
     interaction.options.getString("razón") || "No se especificó una razón";
+  const dias = interaction.options.getInteger("dias");
   const issuedBy = interaction.user.username;
 
-  let user = permabanUser(nombre, razon, issuedBy);
+  let endDate = null;
+  if (dias) {
+    endDate = new Date();
+    endDate.setDate(endDate.getDate() + dias);
+  }
+
+  let user = permabanUser(nombre, razon, endDate);
 
   const embed = new EmbedBuilder()
     .setTitle(`Usuario Permabaneado: ${nombre}`)
     .setColor(0xff0000)
-    .setDescription(`**Razón:** ${razon}`)
-    .addFields({
+    .setDescription(`**Razón:** ${razon}`);
+
+  if (dias) {
+    embed.addFields({
+      name: "Estado",
+      value: `Este usuario ha sido baneado por ${dias} días, hasta ${endDate.toLocaleDateString()} ${endDate.toLocaleTimeString()}`,
+    });
+  } else {
+    embed.addFields({
       name: "Estado",
       value:
         "Este usuario ha sido permanentemente baneado y no podrá ser desbaneado con el comando normal.",
+    });
+  }
+
+  embed
+    .setFooter({
+      text: `${dias ? "Ban temporal" : "Permaban"} emitido por: ${issuedBy}`,
     })
-    .setFooter({ text: `Permaban emitido por: ${issuedBy}` })
     .setTimestamp();
 
   try {
@@ -498,8 +541,14 @@ async function handlePermaban(interaction) {
     await interaction.reply({
       embeds: [
         new EmbedBuilder()
-          .setTitle("Usuario Permabaneado.")
-          .setDescription(`Se ha permabaneado a ${nombre}.`)
+          .setTitle(
+            dias ? "Usuario Baneado Temporalmente." : "Usuario Permabaneado."
+          )
+          .setDescription(
+            dias
+              ? `Se ha baneado a ${nombre} por ${dias} días.`
+              : `Se ha permabaneado a ${nombre}.`
+          )
           .setColor(0xffa500),
       ],
       ephemeral: true,

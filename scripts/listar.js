@@ -335,6 +335,12 @@ export async function createWarningListEmbed(
               (user) =>
                 `**${user.name}** - ${
                   user.permabanReason || "Razón desconocida."
+                } ${
+                  user.banEndDate
+                    ? `| Baneado hasta: <t:${Math.floor(
+                        new Date(user.banEndDate).getTime() / 1000
+                      )}:f>`
+                    : ""
                 }`
             )
             .join("\n")
@@ -398,13 +404,21 @@ export async function createWarningListEmbed(
         );
 
         embed.addFields({
-          name:
-            i === 0
-              ? "🔒 Usuarios Permabaneados"
-              : "🔒 Usuarios Permabaneados (cont.)",
+          name: "🔒 Usuarios Permabaneados",
           value:
             batchPermabannedUsers
-              .map((user) => `**${user.name}** - Ban permanente`)
+              .map(
+                (user) =>
+                  `**${user.name}** - ${
+                    user.permabanReason || "Razón desconocida."
+                  } | ${
+                    user.banEndDate
+                      ? `Baneado hasta: <t:${Math.floor(
+                          new Date(user.banEndDate).getTime() / 1000
+                        )}:f>`
+                      : ""
+                  }`
+              )
               .join("\n")
               .substring(0, 1020) || "Ninguno",
         });

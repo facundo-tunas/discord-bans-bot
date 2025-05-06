@@ -1,3 +1,5 @@
+// File 2: Modified dataHandler.js file
+
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -152,7 +154,7 @@ export function clearWarnings(name) {
   return user;
 }
 
-export function permabanUser(name, reason, issuedBy) {
+export function permabanUser(name, reason, endDate = null) {
   const data = loadData();
   let user = data.users.find(
     (user) => user.name.toLowerCase() === name.toLowerCase()
@@ -167,14 +169,14 @@ export function permabanUser(name, reason, issuedBy) {
       banned: true,
       permaban: true,
       permabanReason: reason,
-      banEndDate: null,
+      banEndDate: endDate ? endDate.toISOString() : null,
     };
     data.users.push(user);
   } else {
     user.permaban = true;
     user.banned = true;
     user.permabanReason = reason;
-    user.banEndDate = null; // Permabans don't have end dates
+    user.banEndDate = endDate ? endDate.toISOString() : null;
   }
 
   saveData(data);
