@@ -2,7 +2,6 @@ import fs from "fs";
 import path from "path";
 
 const CONFIG_PATH = path.join(process.cwd(), "data/config.json");
-// Function to load config
 function loadConfig() {
   try {
     if (!fs.existsSync(CONFIG_PATH)) {

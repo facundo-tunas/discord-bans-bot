@@ -12,7 +12,7 @@ export default {
       if (process.env.HIDDEN === "true") {
         console.log("Hidden instance started!");
       } else if (warningsChannel) {
-        await warningsChannel.send(`🤖 BOT ENCENDIDO`);
+        await warningsChannel.send(`🤖 BOT ENCENDIDO 🔛`);
         console.log(`Bot is ready! Logged in as ${client.user.tag}`);
       } else {
         console.log(

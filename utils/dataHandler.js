@@ -1,5 +1,3 @@
-// File 2: Modified dataHandler.js file
-
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";

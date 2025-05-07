@@ -152,6 +152,18 @@ export default {
     try {
       const subcommand = interaction.options.getSubcommand();
 
+      if (!hasModeratorRole(interaction.member)) {
+        return interaction.reply({
+          embeds: [
+            new EmbedBuilder()
+              .setTitle("Permiso denegado")
+              .setDescription("No tienes permiso para usar este comando.")
+              .setColor(0xff0000),
+          ],
+          ephemeral: true,
+        });
+      }
+
       switch (subcommand) {
         case "revisar":
           return await handleRevisar(interaction);
@@ -291,18 +303,6 @@ async function handleRevisar(interaction) {
 }
 
 async function handleAgregar(interaction) {
-  if (!hasModeratorRole(interaction.member)) {
-    return interaction.reply({
-      embeds: [
-        new EmbedBuilder()
-          .setTitle("Permiso denegado")
-          .setDescription("No tienes permiso para usar este comando.")
-          .setColor(0xff0000),
-      ],
-      ephemeral: true,
-    });
-  }
-
   const nombre = interaction.options.getString("nombre");
   const razon = interaction.options.getString("razon");
   const numero = interaction.options.getInteger("numero") || 1;
@@ -358,18 +358,6 @@ async function handleAgregar(interaction) {
 }
 
 async function handleQuitar(interaction) {
-  if (!hasModeratorRole(interaction.member)) {
-    return interaction.reply({
-      embeds: [
-        new EmbedBuilder()
-          .setTitle("Permiso denegado")
-          .setDescription("No tienes permiso para usar este comando.")
-          .setColor(0xff0000),
-      ],
-      ephemeral: true,
-    });
-  }
-
   const nombre = interaction.options.getString("nombre");
 
   const existingUser = findUser(nombre);
@@ -436,18 +424,6 @@ async function handleQuitar(interaction) {
 }
 
 async function handleLimpiar(interaction) {
-  if (!hasModeratorRole(interaction.member)) {
-    return interaction.reply({
-      embeds: [
-        new EmbedBuilder()
-          .setTitle("Permiso denegado")
-          .setDescription("No tienes permiso para usar este comando.")
-          .setColor(0xff0000),
-      ],
-      ephemeral: true,
-    });
-  }
-
   const nombre = interaction.options.getString("nombre");
 
   const existingUser = findUser(nombre);
@@ -499,18 +475,6 @@ async function handleLimpiar(interaction) {
 }
 
 async function handlePermaban(interaction) {
-  if (!hasModeratorRole(interaction.member)) {
-    return interaction.reply({
-      embeds: [
-        new EmbedBuilder()
-          .setTitle("Permiso denegado")
-          .setDescription("No tienes permiso para usar este comando.")
-          .setColor(0xff0000),
-      ],
-      ephemeral: true,
-    });
-  }
-
   const nombre = interaction.options.getString("nombre");
   const razon =
     interaction.options.getString("razón") || "No se especificó una razón";
@@ -586,18 +550,6 @@ async function handlePermaban(interaction) {
 }
 
 async function handleQuitarPermaban(interaction) {
-  if (!hasModeratorRole(interaction.member)) {
-    return interaction.reply({
-      embeds: [
-        new EmbedBuilder()
-          .setTitle("Permiso denegado")
-          .setDescription("No tienes permiso para usar este comando.")
-          .setColor(0xff0000),
-      ],
-      ephemeral: true,
-    });
-  }
-
   const nombre = interaction.options.getString("nombre");
   const razon = interaction.options.getString("razón");
   const issuedBy = interaction.user.username;
