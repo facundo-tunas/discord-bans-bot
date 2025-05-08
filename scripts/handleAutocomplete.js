@@ -32,7 +32,12 @@ export async function handleAutocomplete(interaction) {
         if (user.banned) label += " [BANEADO]";
 
         return {
-          name: label,
+          /* to avoid bugs just display user.name. i don't get how do they break it so often,
+           from my understanding this happens when you copy and paste
+           the command (it gets pasted as plain text so the value does not get set) */
+
+          // name: label,
+          name: user.name,
           value: user.name,
         };
       });

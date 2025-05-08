@@ -1,0 +1,149 @@
+{
+  "rules": [
+    {
+      "id": 1,
+      "text": "Está tajantemente prohibido el preguntar donde ver el reglamento. Sanción Leve: 1 semana de aislamiento en Discord.",
+      "imageUrl": null
+    },
+    {
+      "id": 123534,
+      "text": "Prohibido denunciar maniobras en el chat GENERAL. Sancion leve. 1 hora de aislamiento."
+    },
+    {
+      "id": 2,
+      "text": "Para ponerse foto de carpincho se deberá pedirle permiso a BELLIGOL.",
+      "imageUrl": null
+    },
+    {
+      "id": 23,
+      "text": "Prohibido preguntar a moderadores el tiempo restante de una sanción o baneo. La penalidad será el triple de la sanción original.",
+      "imageUrl": null
+    },
+    {
+      "id": 73,
+      "text": "Está terminantemente prohibido etiquetar a moderadores/staff posterior a las 2 am (UTC -3). Sanción grave. 1 semana de ban.",
+      "imageUrl": null
+    },
+    {
+      "id": 132,
+      "text": "Uruwhy no está autorizado a dar aislamientos de más de 5 minutos.",
+      "imageUrl": null
+    },
+    {
+      "id": 1668,
+      "text": "Prohibido cuestionar el accionar de STAFF. Sanción excluyente: expulsión de la comunidad.",
+      "imageUrl": null
+    },
+    {
+      "id": 2002,
+      "text": "No se permite subir clips adelantando a Hemmingsen",
+      "imageUrl": null
+    },
+    {
+      "id": 2003,
+      "text": "Reirse dos veces seguidas esta completamente baneado. Multa monetaria de 500USD.",
+      "imageUrl": null
+    },
+    {
+      "id": 23345,
+      "text": "Queda terminantemente PROHIBIDO etiquetar al dueño de FNA. Sanción ejemplar: Expulsion de por vida del haxracing.",
+      "imageUrl": null
+    },
+    {
+      "id": 23682838,
+      "text": "Queda terminantemente PROHIBIDO cuestionar al presidente del server, con caracteres del tipo \"?\". Sancion: 1 hora de aislamiento.",
+      "imageUrl": null
+    },
+    {
+      "id": 333,
+      "text": "Argumentar que cualquier piloto es mejor que Alonso resultará en EXPULSIÓN INMEDIATA sin derecho a apelación.",
+      "imageUrl": null
+    },
+    {
+      "id": 5367,
+      "text": "PROHIBIDO iniciar una encuesta sin incluir de ningún tipo de forma una opción aludiendo a banear a Sery.",
+      "imageUrl": null
+    },
+    {
+      "id": 34072,
+      "text": "NO se puede pedir MOD en otro canal que no sea el de POSTULACIONES. Sanción: Sin posibilidad de ser mod de por vida."
+    },
+    {
+      "id": 80085,
+      "text": "Prohibido preguntar por la duración de una sanción ajena. Sanción: la sanción se traslada a la persona que pregunta, duplicando su duración. "
+    },
+    {
+      "id": 123,
+      "text": "Prohibido insultar/desprestigiar a las sagradas reglas de la FNA. Sanción: Pena de muerte."
+    },
+    {
+      "id": 102,
+      "text": "Prohibido subir una captura sacada de contexto. Sanción: Expulsión de la comunidad."
+    },
+    {
+      "id": 19,
+      "text": "Prohibido usar el gif del enano encerrado dos mensajes seguidos. Sanción: El enano te va a visitar a la noche.",
+      "imageUrl": "https://media.discordapp.net/attachments/806714809462161478/1295902299822231583/20240405_090211_doc_2024-03-29_05-29-41.gif?ex=67e34690&is=67e1f510&hm=c853f8a447ef1f6723a6c5277e10b2238367b744e8d0e3ec3b869a7fd8833427&=&width=220&height=300"
+    },
+    {
+      "id": 95436,
+      "text": "Prohibido que RoDRIFT tenga más de una cuenta en el servidor de Discord.",
+      "punishment": "Sanción: Una de sus cuentas (elegida aleatoriamente) será kickeada del server.",
+      "imageUrl": "https://rodrift.ro/images/rodrift.jpg"
+    },
+    {
+      "id": 20071012,
+      "text": "Los creadores de TICKETS tienen terminantemente PROHIBIDO votar en las encuestas de los moderadores.",
+      "punishment": "Sancion inversa: la situación se invierte y la posible SANCIÓN se aplicara al DENUNCIANTE.",
+      "imageUrl": null
+    },
+    {
+      "id": 912,
+      "text": "Esta PROHIBIDO simpatizar por el Club Atletico Boca Juniors.",
+      "punishment": "Sanción: Examen de cáracter eliminatorio en Inglés.",
+      "imageUrl": "https://extension.umaine.edu/4h/wp-content/uploads/sites/38/2018/12/4H-grades-9-12.png"
+    },
+    {
+      "id": 999666,
+      "text": "Queda completamente PROHIBIDO revelar el EMISOR de un mensaje EMITIDO el canal HOST MOD.",
+      "punishment": "Sanción ejemplar: Expulsión del canal.",
+      "imageUrl": null
+    },
+    {
+      "id": 20052006,
+      "text": "Está PROHIBIDO mandar más de 3 mensajes por día en el canal CLIPS, que no estén relacionados a algún clip.",
+      "punishment": "Sanción: no podrá subir clips por 1 mes.",
+      "imageUrl": null
+    },
+    {
+      "id": 2007,
+      "text": "Queda completamente PROHIBIDO eliminar mensajes enviados al chat, con la intención de evitar una sanción o un momento vergonzoso.",
+      "punishment": "Sanción media: 1 día de aislamiento.",
+      "imageUrl": null
+    },
+    {
+      "id": 2001,
+      "text": "PROHIBIDO ponerse de foto de perfil, al MISMO piloto (deporte motor) que alguien ya eligió con anterioridad.",
+      "punishment": "Sanción: sin foto de perfil por 1 semana.",
+      "imageUrl": null
+    },
+    {
+      "id": 2023,
+      "text": "Esta PROHIBIDO que 2 usuarios tengan de foto de perfil a la MISMA persona. Si 2 o mas personas tienen, o quieren tener de foto de perfil al mismo individuo, deberan enfrentarse en un DUELO para demostrar sus conocimientos sobre dicha persona. El ganador de este EXAMEN podra portar la imagen con orgullo, y los perdedores deberan afrontar la siguiente SANCIÓN.",
+      "punishment": "Sanción humillante: Los desaprobados en la evaluación deberan cumplir 1 DIA sin foto de perfil, y posteriormente ponerse una imagen de OTRO personaje.",
+      "imageUrl": null
+    },
+    {
+      "id": 2008,
+      "text": "La organización tienen permitido aplicar cualquier regla del reglamento a cualquier usuario, en cualquier momento, incluso si la situación no encaja perfectamente. La autoridad de los mods es incuestionable y sus decisiones son ley, por lo cual esta PROHIBIDO quejarse de una sanción mal puesta o tratamiento diferencial con otros usuarios.",
+      "punishment": "Sanción subjetiva: se decidirá en el momento qué castigo aplicar. Puede ir desde un emoji de burla hasta pena de muerte.",
+      "imageUrl": null
+    },
+    {
+      "id": 2008,
+      "text": "La ORGANIZACIÓN tiene permitido aplicar cualquier regla del reglamento a cualquier usuario, en cualquier momento, incluso si la situación no encaja perfectamente. La autoridad de la ORGANIZACIÓN es incuestionable y sus decisiones son ley, por lo cual esta PROHIBIDO quejarse.",
+      "punishment": "Sanción subjetiva: la ORGANIZACIÓN decidirá en el momento qué castigo aplicar. Puede ir desde un emoji de burla hasta pena de muerte.",
+      "imageUrl": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FAnonymous_%2528hacker_group%2529&psig=AOvVaw0Zar_1Eqlhs0SdR9iWePxg&ust=1744994549094000&source=images&cd=vfe&opi=89978449&ved=2ahUKEwjM7ZGzwd-MAxXWbbgEHSLlBC8QjRx6BAgAEBk"
+    }
+  ]
+}
