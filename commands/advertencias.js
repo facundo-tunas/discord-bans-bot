@@ -464,7 +464,7 @@ async function handleLimpiar(interaction) {
   await interaction.reply({
     embeds: [
       new EmbedBuilder()
-        .setTitle("Advertencia Limpada..")
+        .setTitle("Advertencias Limpiadas...")
         .setDescription(`Se han limpiado las advertencias a ${nombre}.`)
         .setColor(0xffa500),
     ],

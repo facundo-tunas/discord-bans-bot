@@ -144,6 +144,24 @@
       "text": "La ORGANIZACIÓN tiene permitido aplicar cualquier regla del reglamento a cualquier usuario, en cualquier momento, incluso si la situación no encaja perfectamente. La autoridad de la ORGANIZACIÓN es incuestionable y sus decisiones son ley, por lo cual esta PROHIBIDO quejarse.",
       "punishment": "Sanción subjetiva: la ORGANIZACIÓN decidirá en el momento qué castigo aplicar. Puede ir desde un emoji de burla hasta pena de muerte.",
       "imageUrl": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FAnonymous_%2528hacker_group%2529&psig=AOvVaw0Zar_1Eqlhs0SdR9iWePxg&ust=1744994549094000&source=images&cd=vfe&opi=89978449&ved=2ahUKEwjM7ZGzwd-MAxXWbbgEHSLlBC8QjRx6BAgAEBk"
+    },
+    {
+      "id": -1,
+      "text": "Cualquier usuario tiene derecho a APELAR un castigo si la regla deja DUDAS. La ORGANIZACIÓN deberá contratar a alguien que actúe como juez, y se deberán presentar PRUEBAS y ARGUMENTOS para que él o ella tome una decisión.",
+      "punishment": "En el caso de perder: se duplica la sanción. En el caso de ganar: la sanción se transfiere al miembro de la ORGANIZACIÓN que la dio.",
+      "imageUrl": null
+    },
+    {
+      "id": 1822,
+      "text": "Prohibido enviar links de servidores de Discord provenientes de BRASIL o de habla Portuguesa en NINGÚN canal.",
+      "punishment": "Su nick será cambiado a mono, más un numero aleatorio, por una semana.",
+      "imageUrl": "https://media.istockphoto.com/id/530810572/es/vector/brasil-bandera-de-ilustraci%C3%B3n-vectorial.jpg?s=612x612&w=0&k=20&c=hu4BPeiDzfttyfE_NrNJuqoQmNIF04HTsaaV81_o88g="
+    },
+    {
+      "id": 9093,
+      "text": "Está completamente prohibido tagear a Campi.",
+      "punishment": "Cano te visitará a la noche.",
+      "imageUrl": "https://m.media-amazon.com/images/M/MV5BNTM3ODkxODI4Ml5BMl5BanBnXkFtZTYwNjY3NDM0._V1_.jpg"
     }
   ]
 }

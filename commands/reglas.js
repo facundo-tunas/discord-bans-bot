@@ -80,7 +80,8 @@ export default {
   async addRule(interaction) {
     if (!ALLOWED_USERS.includes(interaction.user.id)) {
       return await interaction.reply({
-        content: "No tienes permiso para agregar reglas. SOLO HOMIB Y URUWHY.",
+        content:
+          "No tienes permiso para agregar reglas. SOLO HOMIB, CAMPI Y URUWHY.",
         ephemeral: true,
       });
     }

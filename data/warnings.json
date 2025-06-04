@@ -28,8 +28,14 @@
     },
     {
       "name": "yesan",
-      "warnings": 0,
-      "reasons": [],
+      "warnings": 1,
+      "reasons": [
+        {
+          "date": "2025-05-09T20:15:45.084Z",
+          "reason": "obstruir en qualy",
+          "issuedBy": "leyton0191"
+        }
+      ],
       "banned": false,
       "banCount": 1,
       "banEndDate": null
@@ -122,11 +128,16 @@
     },
     {
       "name": "Canø",
-      "warnings": 1,
+      "warnings": 2,
       "reasons": [
         {
           "date": "2025-05-02T16:02:53.145Z",
           "reason": "frenado excesivo",
+          "issuedBy": "uruwuay"
+        },
+        {
+          "date": "2025-05-24T00:18:18.542Z",
+          "reason": "https://discord.com/channels/954064278393077810/1298080114994839726/1375565416805437453",
           "issuedBy": "uruwuay"
         }
       ],
@@ -425,8 +436,14 @@
     },
     {
       "name": "IbaiLlanos (gordofobico)",
-      "warnings": 0,
-      "reasons": [],
+      "warnings": 1,
+      "reasons": [
+        {
+          "date": "2025-05-09T00:28:11.486Z",
+          "reason": "divebomb a HEMMINGSEN",
+          "issuedBy": "uruwuay"
+        }
+      ],
       "banned": false,
       "banCount": 1,
       "banEndDate": null
@@ -689,7 +706,7 @@
     },
     {
       "name": "nava",
-      "warnings": 2,
+      "warnings": 3,
       "reasons": [
         {
           "date": "2025-03-14T22:26:57.928Z",
@@ -700,6 +717,11 @@
           "date": "2025-04-25T02:05:06.067Z",
           "reason": "braketest",
           "issuedBy": "ese.ekis.12"
+        },
+        {
+          "date": "2025-05-09T22:51:35.062Z",
+          "reason": "estampar en la pared a un rival con fines de boostearse",
+          "issuedBy": "jubilado_123"
         }
       ],
       "banned": false,
@@ -859,15 +881,15 @@
       "name": "uruwhy",
       "warnings": 0,
       "reasons": [],
-      "banned": true,
+      "banned": false,
       "banCount": 0,
-      "permaban": true,
+      "permaban": false,
       "permabanReason": "por abandonarnos :(",
       "banEndDate": null
     },
     {
       "name": "rreo",
-      "warnings": 2,
+      "warnings": 4,
       "reasons": [
         {
           "date": "2025-03-16T17:31:01.830Z",
@@ -878,6 +900,16 @@
           "date": "2025-03-26T03:40:49.072Z",
           "reason": "Tosquear/estorbar escribiendo",
           "issuedBy": "leyton0191"
+        },
+        {
+          "date": "2025-05-28T17:04:28.589Z",
+          "reason": "divebomb",
+          "issuedBy": "xrv7x"
+        },
+        {
+          "date": "2025-05-29T11:49:54.533Z",
+          "reason": "wallcut a colapinto",
+          "issuedBy": "uruwuay"
         }
       ],
       "banned": false,
@@ -1155,17 +1187,12 @@
     },
     {
       "name": "nagi",
-      "warnings": 1,
-      "reasons": [
-        {
-          "date": "2025-04-25T02:53:57.147Z",
-          "reason": "encerrar contra la pared",
-          "issuedBy": "jubilado_123"
-        }
-      ],
+      "warnings": 0,
+      "reasons": [],
       "banned": false,
-      "banCount": 2,
-      "permaban": false
+      "banCount": 3,
+      "permaban": false,
+      "banEndDate": null
     },
     {
       "name": "pinkman",
@@ -1254,14 +1281,6 @@
       "banned": false,
       "banCount": 0,
       "permaban": false
-    },
-    {
-      "name": "kevin",
-      "warnings": 0,
-      "reasons": [],
-      "banCount": 0,
-      "permaban": true,
-      "permabanReason": "no estaba en la lista xdd"
     },
     {
       "name": "Franco colapinto",
@@ -1421,7 +1440,7 @@
     },
     {
       "name": "laudrup",
-      "warnings": 2,
+      "warnings": 4,
       "reasons": [
         {
           "date": "2025-04-24T00:36:51.111Z",
@@ -1432,6 +1451,16 @@
           "date": "2025-04-30T19:45:11.390Z",
           "reason": "poner afk en medio de trazada tosqueando a todos",
           "issuedBy": "ramasosa"
+        },
+        {
+          "date": "2025-05-12T00:33:23.165Z",
+          "reason": "frenar descaradamente a ponc",
+          "issuedBy": "crespo8_"
+        },
+        {
+          "date": "2025-06-01T20:16:13.463Z",
+          "reason": "no dejar espacio, wallcut mal ejecutado",
+          "issuedBy": "tomstervelo"
         }
       ],
       "banned": false,
@@ -1659,10 +1688,10 @@
       "warnings": 0,
       "reasons": [],
       "banCount": 0,
-      "banned": true,
+      "banned": false,
       "permaban": true,
       "permabanReason": "Bugear al bot",
-      "banEndDate": "2025-05-09T20:04:18.233Z"
+      "banEndDate": null
     },
     {
       "name": "Santi",
@@ -1681,33 +1710,97 @@
     },
     {
       "name": "Pelé",
-      "warnings": 3,
-      "reasons": [
-        {
-          "date": "2025-05-04T19:55:48.784Z",
-          "reason": "trolleo",
-          "issuedBy": "kiltroo"
-        },
-        {
-          "date": "2025-05-04T19:55:48.786Z",
-          "reason": "trolleo",
-          "issuedBy": "kiltroo"
-        },
-        {
-          "date": "2025-05-04T19:55:48.787Z",
-          "reason": "trolleo",
-          "issuedBy": "kiltroo"
-        }
-      ],
-      "banned": true,
-      "banCount": 3,
-      "permaban": false,
-      "banEndDate": "2025-05-11T19:55:48.787Z"
-    },
-    {
-      "name": "splinter",
       "warnings": 0,
       "reasons": [],
+      "banned": false,
+      "banCount": 3,
+      "permaban": false,
+      "banEndDate": null
+    },
+    {
+      "name": "bochita",
+      "warnings": 1,
+      "reasons": [
+        {
+          "date": "2025-05-09T00:28:34.527Z",
+          "reason": "divebomb a HEMMINGSEN",
+          "issuedBy": "uruwuay"
+        }
+      ],
+      "banned": false,
+      "banCount": 0,
+      "permaban": false,
+      "banEndDate": null
+    },
+    {
+      "name": "Dean",
+      "warnings": 2,
+      "reasons": [
+        {
+          "date": "2025-05-12T00:28:43.858Z",
+          "reason": "braketest",
+          "issuedBy": "crespo8_"
+        },
+        {
+          "date": "2025-05-18T03:15:53.604Z",
+          "reason": "Divebomb agresivo",
+          "issuedBy": "ramasosa"
+        }
+      ],
+      "banned": false,
+      "banCount": 0,
+      "permaban": false,
+      "banEndDate": null
+    },
+    {
+      "name": "ponc",
+      "warnings": 1,
+      "reasons": [
+        {
+          "date": "2025-05-12T00:33:07.570Z",
+          "reason": "encerrar contra la pared",
+          "issuedBy": "crespo8_"
+        }
+      ],
+      "banned": false,
+      "banCount": 0,
+      "permaban": false,
+      "banEndDate": null
+    },
+    {
+      "name": "metilli",
+      "warnings": 0,
+      "reasons": [],
+      "banned": false,
+      "banCount": 0,
+      "permaban": false,
+      "banEndDate": null
+    },
+    {
+      "name": "paco",
+      "warnings": 1,
+      "reasons": [
+        {
+          "date": "2025-05-13T00:13:03.337Z",
+          "reason": "braketest excesivo",
+          "issuedBy": "ramasosa"
+        }
+      ],
+      "banned": false,
+      "banCount": 0,
+      "permaban": false,
+      "banEndDate": null
+    },
+    {
+      "name": "maxi rodriguez",
+      "warnings": 1,
+      "reasons": [
+        {
+          "date": "2025-05-20T22:56:27.419Z",
+          "reason": "obstruir en qualy",
+          "issuedBy": "leyton0191"
+        }
+      ],
       "banned": false,
       "banCount": 0,
       "permaban": false,
