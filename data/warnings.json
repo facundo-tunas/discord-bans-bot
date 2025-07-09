@@ -1308,8 +1308,14 @@
     },
     {
       "name": "fasit0",
-      "warnings": 0,
-      "reasons": [],
+      "warnings": 1,
+      "reasons": [
+        {
+          "date": "2025-06-21T20:21:25.510Z",
+          "reason": "cerrar ilegalmente",
+          "issuedBy": "uruwuay"
+        }
+      ],
       "banned": false,
       "banCount": 2,
       "permaban": false,

@@ -162,6 +162,12 @@
       "text": "Está completamente prohibido tagear a Campi.",
       "punishment": "Cano te visitará a la noche.",
       "imageUrl": "https://m.media-amazon.com/images/M/MV5BNTM3ODkxODI4Ml5BMl5BanBnXkFtZTYwNjY3NDM0._V1_.jpg"
+    },
+    {
+      "id": 2026,
+      "text": "Está terminantemente PROHIBIDO mandar fotos al canal para pasar fotos de Alonso que sean DESFAVORABLES para la IMAGEN y REPUTACIÓN de Fernando Alonso Díaz.",
+      "punishment": "Imposibilidad de mandar y ver imágenes del mencionado canal por 3 días.",
+      "imageUrl": null
     }
   ]
 }
